@@ -1,0 +1,2 @@
+class ItemtypesController < ApplicationController
+end
