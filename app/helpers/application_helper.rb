@@ -86,10 +86,21 @@ module ApplicationHelper
 
 end
 
-# ApplicationHelper.create_menus
-# ApplicationHelper.get_seed_venues
-# ApplicationHelper.update_menus
+
 # client = ApplicationHelper.get_client
+# used in all the other methods, use this if you want to make specific database calls to foursquare 
+# read foursquare2 gem for more information.
+
+# ApplicationHelper.get_seed_venues
+# seed db with 30 restaurants from rails console!!
+
 # ApplicationHelper.similar
-# ApplicationHelper.fixme
+# use this if you want to generate more restaurants (5 per restaurant in db)
+
+# ApplicationHelper.create_menus
+# this will create menues for each of the restaurants in the db
+
+# ApplicationHelper.update_menus
+# this will update menus if db has been around and we want most recent data
+
 
