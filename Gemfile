@@ -9,6 +9,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'pry-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
