@@ -1,1 +1,11 @@
-<h1>Blue's Clues</h1>
+<% if !@data.nil? %>
+<script >
+var myMenu = <%= @data.html_safe%>
+var myMenu1 = <%= @data1.html_safe%>
+var myMenu2 = <%= @data2.html_safe%>
+var myMenu3 = <%= @data3.html_safe%>
+var myMenu4 = <%= @data4.html_safe%>
+</script>
+<% end %>
+<!-- #items[:menu][:menus][:items]||||||[0][:entries][:items] -->
+<h1> WHere am i</h1>
