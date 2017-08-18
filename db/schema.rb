@@ -16,26 +16,42 @@ ActiveRecord::Schema.define(version: 20170817213231) do
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.integer "restaurant_id"
+    t.integer "type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "itemtypes", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.string "google_id"
+    t.string "foursq_id"
+    t.float "longitude"
+    t.float "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.string "body"
+    t.integer "user_id"
+    t.integer "item_id"
+    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
