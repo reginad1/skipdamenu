@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20170817213231) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
-    t.float "price"
+    t.string "price"
+    t.string "description"
     t.integer "restaurant_id"
-    t.integer "type_id"
+    t.integer "entry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
