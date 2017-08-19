@@ -4,7 +4,7 @@ Rails.application.routes.draw do
         :omniauth_callbacks => "users/omniauth_callbacks"
       }
 
-root 'items#index'
+root 'welcome#index'
 
  devise_scope :user do
  	
