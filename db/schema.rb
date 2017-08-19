@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170817230408) do
     t.string "price"
     t.string "description"
     t.integer "restaurant_id"
-    t.integer "entry_id"
+    t.string "entry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20170817230408) do
     t.string "name"
     t.string "google_id"
     t.string "foursq_id"
-    t.float "longitude"
-    t.float "latitude"
+    t.string "longitude"
+    t.string "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

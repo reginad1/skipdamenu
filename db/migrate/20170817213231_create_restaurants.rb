@@ -4,8 +4,8 @@ class CreateRestaurants < ActiveRecord::Migration[5.1]
     	t.string :name
     	t.string :google_id
       t.string :foursq_id
-    	t.float  :longitude
-    	t.float  :latitude
+    	t.string  :longitude
+    	t.string  :latitude
 
       t.timestamps
     end
