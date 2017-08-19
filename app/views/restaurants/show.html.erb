@@ -1,4 +1,8 @@
-
+  <script>
+    var this_rest = new google.maps.LatLng("<%=@restaurant[:latitude]%>","<%=@restaurant[:longitude]%>")
+    var google_id = "<%= @restaurant.google_id %>"
+    var resName = "<%= @restaurant.name %>"
+  </script>
 <h1 class="text-center"> <%= @restaurant.name %></h1>
 <div class="table-responsive">
 <table class="table">
@@ -11,9 +15,9 @@
  
   <tr>
   <td><%= link_to "#{@restaurant.name}", restaurant_path %></td>
-   
-    
-  </tr>
- 
+   </tr>
 </table>
 </div>
+<div id='map-container' class="iframe-container "></div>
+</div>
+<div id='stuff' class="col-lg-4 col-md-4 col-sm-4 "> </div>
