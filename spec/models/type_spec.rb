@@ -3,39 +3,31 @@ require 'rails_helper'
 RSpec.describe Type, type: :model do
   before(:all) do
     Type.delete_all
-    create(:cake)
+
   end
   describe "Attributes" do
     it "has a name" do
-      cheese = build(:type)
-      p build(:item )
+      cheese = build(:type,name:"cheese")
       expect(cheese.name).to eq "cheese"
     end
   end
   describe "Associations" do
-    it "has many Itemtypes" do
-      cheese = build(:type)
-      expect(cheese.name).to eq "cheese"
-    end
     it "has many items" do
-      cheese = build(:type)
-      expect(cheese.name).to eq "cheese"
+      item = create(:restaurant)
+      type = Type.first
+      expect(type.items).to_not be_empty
     end
   end
   describe "Can create in database" do
     it "Save in to the database" do
-      cheese = build(:type)
+      cheese = build(:type,name:"cheese")
       expect{cheese.save}.to change{Type.count}.by(1)
     end
     it "can't save if name matches" do
-      first = create(:type)
-      duplicate = Type.create(attributes_for(:type))
+      first = create(:type,name:"cheese")
+      duplicate = Type.create(attributes_for(:type,name:"cheese"))
       expect(duplicate.errors.messages).to_not be_empty
 
     end
-
-    # it "can save if name match" do
-
-    # end
   end
 end

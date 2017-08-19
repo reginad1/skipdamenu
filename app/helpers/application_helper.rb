@@ -1,7 +1,7 @@
 module ApplicationHelper
   def self.get_client
     # OAuth2::Client.new(ENV["foursq_client"], ENV["foursq_sec"], :site => 'https://foursquare.com/oauth2/access_token')
-    client = Foursquare2::Client.new(:client_id => ENV["foursq_client"], :client_secret => ENV["foursq_sec"],:api_version => '20170817')
+    Foursquare2::Client.new(:client_id => ENV["foursq_client"], :client_secret => ENV["foursq_sec"],:api_version => '20170817')
   end
 
   def self.get_seed_venues
@@ -32,16 +32,28 @@ module ApplicationHelper
     end
   end
 
-  def self.create_types(name,object)
-    return nil if name.nil?
-    name.split(" ").each do |type|
+  def self.create_types(object)
+    return nil if object.name.nil?
+    object.name.split(" ").each do |type|
       object.types << Type.find_or_create_by(name: type.downcase)
     end
-    object.types << Type.find_or_create_by(name: name.downcase)
+    object.types << Type.find_or_create_by(name: object.name.downcase)
     object.save
   end
 
-  def self.create_menus
+  def self.create_menu(menu_item,restaurant)
+    item = Item.new(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
+    self.create_types(item)
+  end
+
+  def self.update_menus(menu_item,restaurant)
+    item = Item.find_or_create_by({entry_id:menu_item.entryId})
+    item.update_attributes(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
+    self.create_types(item)
+  end
+
+  def self.traverse_menu(choice)
+    return nil if !((choice == "create") || (choice ==  "update"))
     restaurants = Restaurant.all
     client = self.get_client
     restaurants.each do |restaurant|
@@ -50,45 +62,58 @@ module ApplicationHelper
       menu[:menu][:menus][:items].each do |item|
         item[:entries][:items].each do |categories|
           categories[:entries][:items].each do |menu_item|
-            object = Item.new(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
-            self.create_types(menu_item.name,object)
+            self.create_menu(menu_item,restaurant) if choice == "create"
+            self.update_menus(menu_item,restaurant) if choice == "update"
           end
         end
       end
     end
   end
+
+  # def self.create_menus
+  #   restaurants = Restaurant.all
+  #   client = self.get_client
+  #   restaurants.each do |restaurant|
+  #     menu = client.venue_menus(restaurant.foursq_id)
+  #     next if !self.menu_valid?(menu)
+  #     menu[:menu][:menus][:items].each do |item|
+  #       item[:entries][:items].each do |categories|
+  #         categories[:entries][:items].each do |menu_item|
+  #           object = Item.new(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
+  #           self.create_types(object)
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 
   def self.menu_valid?(menu)
     return false if menu[:menu][:menus][:count] == 0
     true
   end
 
-  def self.update_menus
-    restaurants = Restaurant.all
-    client = self.get_client
-    restaurants.each do |restaurant|
-      menu = client.venue_menus(restaurant.foursq_id)
-      next if !self.menu_valid?(menu)
-      menu[:menu][:menus][:items].each do |item|
-        item[:entries][:items].each do |categories|
-          categories[:entries][:items].each do |menu_item|
-            item = Item.find_or_create_by({entry_id:menu_item.entryId})
-            item.update_attributes(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
-            self.create_types(menu_item.name,object)
-          end
-        end
-      end
-    end
-  end
-
-
-
-
+  # def self.update_menus
+  #   restaurants = Restaurant.all
+  #   client = self.get_client
+  #   restaurants.each do |restaurant|
+  #     menu = client.venue_menus(restaurant.foursq_id)
+  #     next if !self.menu_valid?(menu)
+  #     menu[:menu][:menus][:items].each do |item|
+  #       item[:entries][:items].each do |categories|
+  #         categories[:entries][:items].each do |menu_item|
+  #           item = Item.find_or_create_by({entry_id:menu_item.entryId})
+  #           item.update_attributes(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
+  #           self.create_types(object)
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 end
 
 
 # client = ApplicationHelper.get_client
-# used in all the other methods, use this if you want to make specific database calls to foursquare 
+# used in all the other methods, use this if you want to make specific database calls to foursquare
 # read foursquare2 gem for more information.
 
 # ApplicationHelper.get_seed_venues
@@ -97,10 +122,10 @@ end
 # ApplicationHelper.similar
 # use this if you want to generate more restaurants (5 per restaurant in db)
 
-# ApplicationHelper.create_menus
+# ApplicationHelper.traverse_menu("create")
 # this will create menues for each of the restaurants in the db
 
-# ApplicationHelper.update_menus
+# ApplicationHelper.traverse_menu("update")
 # this will update menus if db has been around and we want most recent data
 
 

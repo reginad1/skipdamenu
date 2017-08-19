@@ -5,8 +5,11 @@ FactoryGirl.define do
     description "The Greatest Chesse Cake by Factory Girl"
     entry_id "1234567890asdfghjkl"
 
-    after :create do |post|
-      create :type, item: item             # has_one
+    after :create do |item|
+      item.name.split(" ").each do |name|
+        type = create(:type,name:name)
+        item.types << type
+      end
     end
   end
 end
