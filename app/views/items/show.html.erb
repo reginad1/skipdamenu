@@ -1,0 +1,24 @@
+<h1><%= @item.name %></h1>
+<p><%= @item.description %></p>
+<p><%= @item.price %></p>
+<p><%= link_to "#{@item.restaurant.name}", restaurant_path %></p>
+
+
+<%= form_with(model: @item) do |item|%>
+
+
+<%= fields_for :reviews do |review| %>
+<p>Add Review</p>
+<div class="field">
+  <%= review.label :body %>
+  <%= review.text_field :body %>
+  <% end %>
+</div>
+<div class="actions">
+  <%= item.submit %>
+</div>
+
+
+
+<% end %>
+
