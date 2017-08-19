@@ -3,4 +3,6 @@ class Item < ApplicationRecord
 	belongs_to :restaurant
   has_many :itemtypes
 	has_many :types, through: :itemtypes, source: :type
+
+  accepts_nested_attributes_for :reviews, reject_if: proc { |attributes| attributes['body'].blank? }
 end
