@@ -52,7 +52,7 @@ module ApplicationHelper
     self.create_types(item)
   end
 
-  def self.traverse_menu(choice)
+  def self.traverse_menu(choice="nil")
     return nil if !((choice == "create") || (choice ==  "update"))
     restaurants = Restaurant.all
     client = self.get_client
@@ -68,47 +68,14 @@ module ApplicationHelper
         end
       end
     end
+    true
   end
-
-  # def self.create_menus
-  #   restaurants = Restaurant.all
-  #   client = self.get_client
-  #   restaurants.each do |restaurant|
-  #     menu = client.venue_menus(restaurant.foursq_id)
-  #     next if !self.menu_valid?(menu)
-  #     menu[:menu][:menus][:items].each do |item|
-  #       item[:entries][:items].each do |categories|
-  #         categories[:entries][:items].each do |menu_item|
-  #           object = Item.new(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
-  #           self.create_types(object)
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
 
   def self.menu_valid?(menu)
     return false if menu[:menu][:menus][:count] == 0
     true
   end
 
-  # def self.update_menus
-  #   restaurants = Restaurant.all
-  #   client = self.get_client
-  #   restaurants.each do |restaurant|
-  #     menu = client.venue_menus(restaurant.foursq_id)
-  #     next if !self.menu_valid?(menu)
-  #     menu[:menu][:menus][:items].each do |item|
-  #       item[:entries][:items].each do |categories|
-  #         categories[:entries][:items].each do |menu_item|
-  #           item = Item.find_or_create_by({entry_id:menu_item.entryId})
-  #           item.update_attributes(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
-  #           self.create_types(object)
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
 end
 
 

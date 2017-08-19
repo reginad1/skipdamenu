@@ -1,15 +1,5 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ApplicationHelperHelper. For example:
-#
-# describe ApplicationHelperHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe ApplicationHelper, type: :helper do
   describe "get_client Method" do
     it "Client key is in enviroment" do
@@ -41,7 +31,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
     it "build types and saves object" do
       restaurant = create(:restaurant)
-      item = build(:item,name:"Bagel Buns", restaurant_id:restaurant.id)
+      item = build(:item,name:"Bagel Buns", restaurant_id:restaurant.id,entry_id:"123qwe123qwe123qwe")
       ApplicationHelper.create_types(item)
       expect(item.id).to_not be nil
       expect(item.types).to_not be_empty
@@ -49,8 +39,57 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(Type.find_by_name("bagel")).to_not be nil
       expect(Type.find_by_name("buns")).to_not be nil
     end
-
+  end
+  describe "get_seed_venues method" do
+    it "create Restaurant" do
+      expect{ApplicationHelper.get_seed_venues}.to change{Restaurant.count}
+    end
+  end
+  describe "similar method" do
+    it "create Restaurant" do
+      client = ApplicationHelper.get_client
+      venue = client.search_venues(:ll=>"30.2672,-97.7431",query:"Restaurant",limit:1)
+      ApplicationHelper.restaurant_creator(venue[:venues],[Restaurant.new])
+      expect{ApplicationHelper.similar}.to change{Restaurant.count}
+    end
   end
 
+  describe "restaurant_creator method" do
+    it "create Restaurant" do
+      client = ApplicationHelper.get_client
+      venue = client.search_venues(:ll=>"30.2672,-97.7431",query:"Restaurant",limit:1)
+      expect{ApplicationHelper.restaurant_creator(venue[:venues],[Restaurant.new])}.to change{Restaurant.count}
+    end
+  end
+  describe "traverse_menu method" do
+    it "will return nil if choice is not 'update' or 'create'" do
+      expect(ApplicationHelper.traverse_menu()).to be nil
+      expect(ApplicationHelper.traverse_menu("break")).to be nil
+      expect(ApplicationHelper.traverse_menu("/n/n")).to be nil
+      expect(ApplicationHelper.traverse_menu("\n\n")).to be nil
+      expect(ApplicationHelper.traverse_menu("updat")).to be nil
+      expect(ApplicationHelper.traverse_menu("creat")).to be nil
+      expect(ApplicationHelper.traverse_menu("create")).to_not be nil
+      expect(ApplicationHelper.traverse_menu("update")).to_not be nil
+    end
+    it "will create menus" do
+      client = ApplicationHelper.get_client
+      venue = client.search_venues(:ll=>"30.2672,-97.7431",query:"Restaurant",limit:1)
+      ApplicationHelper.restaurant_creator(venue[:venues],[Restaurant.new])
+      current_count = Item.count
+      value = ApplicationHelper.traverse_menu("create")
+      expect(current_count).to_not eq Item.count
+      expect(value).to eq true
+    end
+    it "will update menus" do
+      client = ApplicationHelper.get_client
+      venue = client.search_venues(:ll=>"30.2672,-97.7431",query:"Restaurant",limit:1)
+      ApplicationHelper.restaurant_creator(venue[:venues],[Restaurant.new])
+      current_count = Item.count
+      value = ApplicationHelper.traverse_menu("update")
+      expect(current_count).to_not eq Item.count
+      expect(value).to eq true
+    end
+  end
 end
 
