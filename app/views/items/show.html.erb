@@ -1,24 +1,49 @@
 <h1><%= @item.name %></h1>
 <p><%= @item.description %></p>
 <p><%= @item.price %></p>
-<p><%= link_to "#{@item.restaurant.name}", restaurant_path %></p>
+<p><%= link_to "#{@item.restaurant.name}", restaurant_path(@item.restaurant.id) %></p>
+<h3>Reviews:</h3>
+<% @item.reviews.each do |review| %>
+	<p>Review: <%= review.body %></p>
+	<% user = review.user.email %>
+	<p>User: <%= user %></p>
+	<br>
+	<br>
+	<br>
+	<% end %>
 
 
 <%= form_with(model: @item) do |item|%>
+<% if @item.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@item.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+	<ul>
+		<% @item.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
 
 
 <%= fields_for :reviews do |review| %>
-<p>Add Review</p>
-<div class="field">
-  <%= review.label :body %>
-  <%= review.text_field :body %>
-  <% end %>
-</div>
-<div class="actions">
-  <%= item.submit %>
-</div>
+	<p>Add Review</p>
+	<div class="form-group-row">
+		<label class="col-md-2 col-form-label"><%= review.label :review %></label>
+		<div class="col-md-10">
+			<textarea type="text" class="form-control" cols='10', rows='5'<%= review.text_field :body%></textarea>
+		</div>
+	</div>
+	<div class= "form-group col-md-10 row">
+		<label for="rating">Rating:</label>
+		<%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+	</div>
+	<% end %>
+	<div class="actions">
+		<%= item.submit %>
+	</div>
 
 
 
 <% end %>
-
