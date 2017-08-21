@@ -82,6 +82,7 @@ GEM
       faraday (~> 0.8)
       faraday_middleware (>= 0.8)
       hashie (>= 1.0, < 4.0.0)
+    geocoder (1.4.4)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     guard (2.14.1)
@@ -279,6 +280,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   foursquare2
+  geocoder
   guard-rspec
   jbuilder (~> 2.5)
   jquery-rails
