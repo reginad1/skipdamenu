@@ -1,23 +1,34 @@
+<!--   <script>
+    var this_rest = new google.maps.LatLng("<#%=@item.restaurant[:latitude]%>","<#%=@item.restaurant[:longitude]%>")
+    var google_id = "<#%= @item.restaurant.google_id %>"
+    var resName = "<#%= @item.restaurant.name %>"
+  </script>
+-->
+
 <h1><%= @item.name %></h1>
 <p><%= @item.description %></p>
 <p><%= @item.price %></p>
 <p><%= link_to "#{@item.restaurant.name}", restaurant_path(@item.restaurant.id) %></p>
 <h3>Reviews:</h3>
+<script type="text/javascript">
+	var item_id = "<%= @item.id %>"
+</script>
+
+<div class="review-container">
 <% @item.reviews.each do |review| %>
-	<p>Review: <%= review.body %></p>
-	<p>Rating: <%= review.rating%></p>
-	<% user = review.user.email %>
-	<p>User: <%= user %></p>
-	<br>
-	<br>
-	<br>
-	<% end %>
+<ul>	
+</ul>
+<% end %>
+</div>
 
 
-<%= form_with(model: @item) do |item|%>
+<button id="add-review-button">Add Review and Rating!</button>
+
+
+<%= form_with(model: @item, :html => {:id => "review_form"},local: true) do |item|%>
 <% if @item.errors.any? %>
 <div id="error_explanation">
-	<h2><%= pluralize(@item.errors.count, "error") %> prohibited this author from being saved:</h2>
+	<h2><%= pluralize(@item.errors.count, "error") %> prohibited this review from being saved:</h2>
 
 	<ul>
 		<% @item.errors.full_messages.each do |message| %>
@@ -29,22 +40,24 @@
 
 
 <%= fields_for :reviews do |review| %>
-	<p>Add Review</p>
-	<div class="form-group-row">
-		<label class="col-md-2 col-form-label"><%= review.label :review %></label>
-		<div class="col-md-10">
-			<textarea type="text" class="form-control" cols='10', rows='5'<%= review.text_field :body%></textarea>
-		</div>
+<p>Add Review</p>
+<div class="form-group-row">
+	<label class="col-md-2 col-form-label"><%= review.label :review %></label>
+	<div id="review-body" class="col-md-10">
+		<textarea type="text" class="form-control" cols='10', rows='5'<%= review.text_field :body%></textarea>
 	</div>
-	<div class= "form-group col-md-10 row">
-		<label for="rating">Rating:</label>
-		<%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
-	</div>
-	<% end %>
-	<div class="actions">
-		<%= item.submit %>
-	</div>
-
-
-
+</div>
+<div id="review-rating" class= "form-group col-md-10 row">
+	<label for="rating">Rating:</label>
+	<%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+</div>
 <% end %>
+<div class="actions">
+	<%= item.submit "Add Review!" %>
+</div>
+<% end %>
+
+
+
+
+

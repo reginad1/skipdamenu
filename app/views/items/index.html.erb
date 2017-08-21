@@ -23,7 +23,10 @@
       	      <% end %>
       	      <% if average.length > 0 %>
  		      <% average_array = average.compact %>
- 	    <td> <%= average_array.inject{ |sum, el| sum + el }.to_f / average_array.length %> </td>
+ 	          <% display_average = average_array.inject{ |sum, el| sum + el }.to_f / average_array.length %>
+ 	    <td>  <%= display_average.round(1)%> / 5 </td>
+ 	    	  <% else %>
+ 	    <td>Rating not available</td>
  	<% end %> 
 <% end %>
   </tr>

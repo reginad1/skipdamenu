@@ -1,0 +1,8 @@
+<li class= "review">
+<p>
+	<span class="body">{{review/body}}</span>
+</p>
+<p>
+	<span class="rating">{{review/rating}}</span>
+</p>
+</li>
