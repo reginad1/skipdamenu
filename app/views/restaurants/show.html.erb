@@ -12,12 +12,35 @@
   </tr>
 
 
- 
+
   <tr>
   <td><%= link_to "#{@restaurant.name}", restaurant_path %></td>
    </tr>
 </table>
 </div>
-<div id='map-container' class="iframe-container "></div>
+
+<div >
+  <div class="col-lg-8 col-md-8 col-sm-8 ">
+    <% @menu.each do |item| %>
+
+    <% end %>
+  </div>
+
+
+
+  <div class="col-lg-4 col-md-4 col-sm-4 ">
+    <div id='map-container' class="iframe-container "></div>
+    <div class="restaurant-info">
+      <ul class="list-group">
+        <li class="list-group-item"><p>Google Rating: <span id="rating"></span></p></li>
+        <li class="list-group-item"><p>Phone number: <span id="phone_number"></span></p></li>
+        <li class="list-group-item"><p>Hours: <span id="hours"></span></p></li>
+        <li class="list-group-item"><p>Address: <span id="address"></span></p></li>
+      </ul>
+
+    </div>
+  </div>
 </div>
+
+
 <div id='stuff' class="col-lg-4 col-md-4 col-sm-4 "> </div>
