@@ -1,2 +1,16 @@
 
-<h1> WHere am i</h1>
+<%@items = @items.uniq%>
+<% binding.pry %>
+<% @items.each do |item|%>
+<table>
+<tr>
+  <td><%= link_to "#{item.name}", item_path(item)%>    |</td>
+    <!-- NEED TO ADD USER SHOW PATH ONCE USER SHOW WORKING -->
+    <td>  <%= item.restaurant.name %> |</td>
+    <td>  <%= item.restaurant %> </td>
+     <!-- some items seem to be listed in our database more than once, with different retaurant objects-->
+  </tr>
+</table>
+<% end %>
+
+

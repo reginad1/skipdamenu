@@ -6,4 +6,9 @@ class Item < ApplicationRecord
   validates :entry_id, uniqueness:true
   accepts_nested_attributes_for :reviews, reject_if: proc { |attributes| attributes['body'].blank? }
 
+  #Active record search call
+  def self.search(query)
+      where("name ILIKE ?", "%#{query}%").uniq
+  end
+
 end

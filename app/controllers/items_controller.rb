@@ -3,6 +3,11 @@ class ItemsController < ApplicationController
 	def index
 	 	@items = Item.all
     @review = Review.new
+    if params[:search]
+      @items = Item.search(params[:search]).sort
+    else
+      @items = Item.all.order("created_at DESC")
+    end
 	end
 
 	def show
