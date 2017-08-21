@@ -9,3 +9,5 @@ KEY=506708106387897
 
 CLIENT_ID=429563671498-jq0er3m0ubi3dve1m8k9nbbthdlkfi8q.apps.googleusercontent.com
 CLIENT_SECRET=0Igd9wECeVjEJgUrxxfpHFJq
+
+geocoding api AIzaSyBInth2Yxd8SWxLEXbv5bOYsm1aQ5eyH60

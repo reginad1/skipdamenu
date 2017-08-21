@@ -28,7 +28,7 @@ function map_init(place_id) {
           center: this_rest,
           zoom: 15
         });
-     
+
         console.log(place_id)
         var infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
@@ -72,6 +72,21 @@ $( document ).ready(function() {
 
 
     console.log(`this rest location is ${this_rest}`)
+
+    if (google_id == "")  {
+      console.log("I WORK!")
+      getGoogleID(userName)
+    } else  {
+      map_init(google_id)
+    }
+    console.log( "my map is showing!" );
+    console.log( `googleid is ${google_id}` );
+
+
+    console.log(`this user location is ${this_user}`)
+
 });
+
+
 //_____________________________________________________________________________________
 

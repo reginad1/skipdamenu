@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-   before_action :set_item
+   # before_action :set_item
 
 	def index
 	 	@items = Item.all
@@ -12,24 +12,25 @@ class ItemsController < ApplicationController
 	end
 
 	def show
+    binding.pry
 	  @item = Item.find(params[:id])
 	end
 
   def update
     @item = Item.find(params[:id])
     @review = @item.reviews.create!(body: params[:reviews][:body],rating: params[:reviews][:rating], user_id: current_user.id)
-         
+
     redirect_to @item
   end
 
   def edit
     @item.reviews.build
-  end 
+  end
 
   #  def update
   #   respond_to do |format|
   #     binding.pry
-  #     current_user.id = @review.user_id 
+  #     current_user.id = @review.user_id
   #     if @item.update(params)
   #       format.html { redirect_to @item, notice: 'item was successfully updated.' }
   #       format.json { render :show, status: :ok, location: @item }
@@ -42,9 +43,9 @@ class ItemsController < ApplicationController
 
   private
 
-   def set_item
-      @item = Item.find(params[:id])
-    end
+   # def set_item
+   #    @item = Item.find(params[:id])
+   #  end
 
     def review_params
       params.require(:review).permit(body: params[:reviews][:body], user_id: current_user.id)
