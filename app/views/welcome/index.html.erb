@@ -1,1 +1,6 @@
-<h1> Hello there </h1>
+<div class="form-group" id="search_box">
+<%= form_tag(items_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
+	<%= text_field_tag :search, params[:search], placeholder: "What do you want?", class: 'form-control' %>
+	<%= submit_tag "Search"%>
+	<% end %>
+</div>
