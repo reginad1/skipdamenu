@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-   before_action :set_item
+   # before_action :set_item
 
 	def index
 	 	@items = Item.all
@@ -42,9 +42,9 @@ class ItemsController < ApplicationController
 
   private
 
-   def set_item
-      @item = Item.find(params[:id])
-    end
+   # def set_item
+   #    @item = Item.find(params[:id])
+   #  end
 
     def review_params
       params.require(:review).permit(body: params[:reviews][:body], user_id: current_user.id)

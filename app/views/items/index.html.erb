@@ -1,15 +1,31 @@
 
 <%@items = @items.uniq%>
 <%# binding.pry %>
-<% @items.each do |item|%>
 <table>
+<tr>
+	<th>Food Item</th>
+	<th>Restaurant</th>
+	<th>Price</th>
+	<th>Overall Rating</th>
+</tr>
+<% @items.each do |item|%>
 <tr>
   <td><%= link_to "#{item.name}", item_path(item)%>    |</td>
     <td>  <%= item.restaurant.name %> |</td>
-    <td>  <%= item.price %> </td>
+    <td>  <%= item.price %>      |</td>
+    	  <% average = [] %>
+      	  <% item.reviews.each do |review| %>
+      	  <% average << review.rating %>
+      	  <% end %>
+      	  <% if average.length > 0 %>
+ 		  <% average_array = average.compact %>
+ 	<td> <%= average_array.inject{ |sum, el| sum + el }.to_f / average_array.length %> </td>
+ 		 <% end %> 
+
      <!-- some duplicate items are listed in our database-->
   </tr>
 </table>
 <% end %>
 
 
+	

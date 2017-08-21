@@ -5,6 +5,7 @@
 <h3>Reviews:</h3>
 <% @item.reviews.each do |review| %>
 	<p>Review: <%= review.body %></p>
+	<p>Rating: <%= review.rating%></p>
 	<% user = review.user.email %>
 	<p>User: <%= user %></p>
 	<br>
