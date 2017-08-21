@@ -18,18 +18,18 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @review = @item.reviews.create!(body: params[:reviews][:body],rating: params[:reviews][:rating], user_id: current_user.id)
-         
+
     redirect_to @item
   end
 
   def edit
     @item.reviews.build
-  end 
+  end
 
   #  def update
   #   respond_to do |format|
   #     binding.pry
-  #     current_user.id = @review.user_id 
+  #     current_user.id = @review.user_id
   #     if @item.update(params)
   #       format.html { redirect_to @item, notice: 'item was successfully updated.' }
   #       format.json { render :show, status: :ok, location: @item }
