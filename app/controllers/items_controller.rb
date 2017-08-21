@@ -10,6 +10,15 @@ class ItemsController < ApplicationController
     end
 	end
 
+  def add
+    @item = Item.new(recipe_params)
+    if @item.save
+      redirect_to @item
+    else
+      render action: 'new'
+    end
+  end
+
 	def show
 	  @item = Item.find(params[:id])
 	end
