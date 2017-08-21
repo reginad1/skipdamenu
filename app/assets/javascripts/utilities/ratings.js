@@ -1,6 +1,5 @@
 function giveRatings(number)  {
   number = Math.round(number)
-  console.log(number)
   number > 5 ? number = 0: number;
   number === null ? number = 0: number;
   star_bad = `<span class="glyphicon glyphicon-star" aria-hidden="true" style="color:black" ></span>`
@@ -14,4 +13,15 @@ function giveRatings(number)  {
     }
   }
   return rating
+}
+
+function addGooglePictures(place){
+  pictures = place.photos
+  console.log(place)
+  console.log(pictures)
+  for (var y = 0; y < pictures.length; y++) {
+      picture = `<div class="col-lg-6 col-md-6 col-sm-6 center-cropped" style="background-image: url(${pictures[y].getUrl({maxWidth:300,maxHeight:300})});"> </div>
+      `
+      $("#pictures").prepend(picture)
+  }
 }

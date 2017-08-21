@@ -20,8 +20,8 @@ function appendAddress(place)  {
 
 function updateRestaurantInfo(place) {
   appendGoogleRating(place)
-  console.log(place)
   appendPhoneNumber(place)
   appendHours(place)
   appendAddress(place)
+  addGooglePictures(place)
 }
