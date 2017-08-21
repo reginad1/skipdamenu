@@ -44,8 +44,6 @@ gem 'simplecov', :require => false, :group => :test
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
-  gem 'guard-rspec'
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
