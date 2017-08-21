@@ -73,18 +73,6 @@ $( document ).ready(function() {
 
     console.log(`this rest location is ${this_rest}`)
 
-    if (google_id == "")  {
-      console.log("I WORK!")
-      getGoogleID(userName)
-    } else  {
-      map_init(google_id)
-    }
-    console.log( "my map is showing!" );
-    console.log( `googleid is ${google_id}` );
-
-
-    console.log(`this user location is ${this_user}`)
-
 });
 
 

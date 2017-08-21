@@ -1,6 +1,20 @@
+<script>
+    var this_rest = new google.maps.LatLng("<%=@user[:latitude]%>","<%=@user[:longitude]%>")
+    var google_id = "<%= @user.google_id %>"
+    var resName = "<%= @user.name %>"
+  </script>
 
+<fieldset class="form-group">
+<small class="text-muted">You can also enter IP. Your IP is <%= request.ip %></small>
+</fieldset>
+
+
+<p>Address: <%= @user.address %></p>
+<p>Coordinates: <%= @user.latitude%> <%= @user.longitude %></p>
 <h1 class="text-center"><%=@user.name%><h1>
 </div>
-<div id='map-container' class="iframe-container "></div>
+<div id='map-container' class="iframe-container "><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@user.latitude},#{@user.longitude}&markers=#{@user.latitude},#{@user.longitude}&zoom=15&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+              class: 'img-fluid img-rounded', alt: "#{@user.name} on the map"%></div>
+
 </div>
 <div id='stuff' class="col-lg-4 col-md-4 col-sm-4 "> </div>
