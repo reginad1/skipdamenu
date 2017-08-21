@@ -1,16 +1,29 @@
 
-<%@items = @items.uniq%>
-<%# binding.pry %>
-<% @items.each do |item|%>
-<table>
-<tr>
-  <td><%= link_to "#{item.name}", item_path(item)%>    |</td>
-   <td>  $<%= item.price %>  |</td>
-    <td>  <%= item.restaurant.name %>  |</td>
-    <td> <%= Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [item.restaurant.latitude, item.restaurant.longitude]).round(2) %> miles away</td>
-     <!-- some duplicate items are listed in our database-->
-  </tr>
-</table>
-<% end %>
+<ul class="menu-list">
+    <li class="list-group-item menu-list-item"> <h2 >Search Results</h2></li>
+    <% @items.each do |item| %>
 
+      <li class="list-group-item menu-list-item">
+
+        <div class="row menu-fill">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3 col-lg-2 col-lg-2 menu-pictures">
+                <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture")%>
+
+                </div>
+                <div class="col-xs-12 col-sm-9 col-lg-10 col-lg-10 menu-descriptions">
+                  <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
+                  <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
+                  <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
+                  <p> <%= Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [item.restaurant.latitude, item.restaurant.longitude]).round(2) %> miles away </p>
+                  <p><%=item.description ||"Description N/A" %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 
