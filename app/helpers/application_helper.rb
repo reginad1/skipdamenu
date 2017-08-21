@@ -32,24 +32,32 @@ module ApplicationHelper
     end
   end
 
-  def self.create_types(object)
-    return nil if object.name.nil?
-    object.name.split(" ").each do |type|
-      object.types << Type.find_or_create_by(name: type.downcase)
-    end
-    object.types << Type.find_or_create_by(name: object.name.downcase)
-    object.save
+  # def self.create_types(object)
+  #   return nil if object.name.nil?
+  #   object.name.split(" ").each do |type|
+  #     object.types << Type.find_or_create_by(name: type.downcase)
+  #   end
+  #   object.types << Type.find_or_create_by(name: object.name.downcase)
+  #   object.save
+  # end
+
+  def self.not_duplicate_menu_res?(name,restaurant_id)
+    original = Item.find_by_name(name)
+    return true if original == nil
+    return true if original.restaurant_id != restaurant_id
+    false
   end
 
   def self.create_menu(menu_item,restaurant)
     item = Item.new(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
-    self.create_types(item)
+
+    item.save if not_duplicate_menu_res?(menu_item.name,restaurant.id)
   end
 
   def self.update_menus(menu_item,restaurant)
     item = Item.find_or_create_by({entry_id:menu_item.entryId})
     item.update_attributes(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
-    self.create_types(item)
+    item.save if not_duplicate_menu_res?(menu_item.name,restaurant.id)
   end
 
   def self.traverse_menu(choice="nil")
