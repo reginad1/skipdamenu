@@ -16,19 +16,16 @@ function getGoogleID(search_term) {
   function callback(result) {
     result = result.shift();
     //make an ajax call -> update our restaurauasdiaser.google_id with place_id
-
+    updateGoogleID(result.place_id,'/restaurants/'+Rid)
     map_init(result.place_id) // this is technically our google_id
     }
       }
-
-
 
 function map_init(place_id) {
         var map = new google.maps.Map(document.getElementById('map-container'), {
           center: this_rest,
           zoom: 15
         });
-
 
         var infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
@@ -37,7 +34,6 @@ function map_init(place_id) {
           placeId: place_id
         },
          function callback(result, status) {
-          console.log(`IT WORKS, my result is ${result}`)
           updateRestaurantInfo(result)
 
           ///// Its placing the Marker///////
@@ -54,13 +50,6 @@ function map_init(place_id) {
           }
         });
       }
-function format_hours(hours){
-  return `<p> ${hours.join("</p> <p>")} </p> `
-}
-
-
-
-
 
 $( document ).ready(function() {
     if (google_id == "")  {

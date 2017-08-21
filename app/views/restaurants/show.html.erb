@@ -2,6 +2,7 @@
     var this_rest = new google.maps.LatLng("<%=@restaurant[:latitude]%>","<%=@restaurant[:longitude]%>")
     var google_id = "<%= @restaurant.google_id %>"
     var resName = "<%= @restaurant.name %>"
+    var Rid = "<%= @restaurant.id %>"
   </script>
 <h1 class="text-center"> <%= @restaurant.name %></h1>
 <div class="table-responsive">
@@ -27,14 +28,15 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="row">
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                  picture here
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 menu-pictures">
+                <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture float-left")%>
                 </div>
-                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 menu-descriptions">
+
                   <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
-                  <p>ratings:<span> <%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span><%=item.reviews.length %> reviews </span></p>
-                  <p>price:<span> $<%=item.price %></span></p>
-                  <p>description:<%=item.description %></p>
+                  <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
+                  <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
+                  <p><%=item.description ||"Description N/A" %></p>
 
                 </div>
               </div>

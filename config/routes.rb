@@ -7,16 +7,16 @@ Rails.application.routes.draw do
 root 'welcome#index'
 
  devise_scope :user do
- 	
+
  get 'sign_in' , :to => 'devise/sessions#new', :as => :new_user_session_path
  #delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
 
 end
 
-     
+
      resources :items
      resources :users
-     resources :restaurants, only: [:show] 
-   
+     resources :restaurants, only: [:show,:update]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

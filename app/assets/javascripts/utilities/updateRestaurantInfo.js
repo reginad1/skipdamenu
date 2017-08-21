@@ -25,3 +25,12 @@ function updateRestaurantInfo(place) {
   appendAddress(place)
   addGooglePictures(place)
 }
+
+function updateGoogleID(place_id,url) {
+  console.log("got here")
+  $.ajax({
+    method:"put",
+    url:url,
+    data:{map:place_id}
+  })
+}

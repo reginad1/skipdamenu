@@ -17,8 +17,6 @@ function giveRatings(number)  {
 
 function addGooglePictures(place){
   pictures = place.photos
-  console.log(place)
-  console.log(pictures)
   for (var y = 0; y < pictures.length; y++) {
       picture = `<div class="col-lg-6 col-md-6 col-sm-6 center-cropped" style="background-image: url(${pictures[y].getUrl({maxWidth:300,maxHeight:300})});"> </div>
       `
