@@ -6,7 +6,7 @@
   </script>
 <h1 class="text-center"> <%= @restaurant.name %></h1>
 <div >
-  <div class="col-lg-8 col-md-8 col-sm-8 ">
+  <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-2col-lg-7 col-md-7 col-sm-7 ">
     <ul class="menu-list">
     <li class="list-group-item menu-list-item"> <h2 >Menu</h2></li>
     <% @menu.each do |item| %>
@@ -16,11 +16,8 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="row">
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 menu-pictures">
-                <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture float-left")%>
-
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 menu-descriptions">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu-descriptions">
+                <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture ")%>
                   <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
                   <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
                   <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
@@ -34,7 +31,7 @@
     </ul>
   </div>
 
-  <div class=".col-lg-offset-8 .col-md-offset-8 .col-sm-offset-8 col-lg-4 col-md-4 col-sm-4 ">
+  <div class=" col-lg-3 col-md-3 col-sm-3 ">
     <div id='map-container' class="iframe-container "></div>
     <div class="restaurant-info">
       <ul class="list-group">
