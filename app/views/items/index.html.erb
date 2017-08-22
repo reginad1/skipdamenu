@@ -13,7 +13,11 @@
                   <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
                   <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
                   <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
+                  <% if current_user %>
                   <p> <%= Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [item.restaurant.latitude, item.restaurant.longitude]).round(2) %> miles away </p>
+                  <% else %>
+                  <p> <%= Geocoder::Calculations.distance_between([@generic_austin[:latitude], @generic_austin[:longitude]], [item.restaurant.latitude, item.restaurant.longitude]).round(2)%> miles away </p>
+                  <% end %>
                   <p><%=item.description ||"Description N/A" %></p>
                 </div>
               </div>
