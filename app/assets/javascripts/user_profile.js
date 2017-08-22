@@ -1,7 +1,7 @@
 $( document ).ready(function() {
   $('#location_edit_form').hide();
   $('#edit_location').click(function(event) {
-    $('#location_edit_form').show();
+    $('#location_edit_form').toggle();
   })
   $('#location_edit_form').submit(function(event) {
     $('#location_edit_form').hide();
