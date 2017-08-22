@@ -1,39 +1,31 @@
 
-<%@items = @items.uniq%>
-<%# binding.pry %>
-<table class="table">
-<thead>
-<tr>
-	<th>Food Item</th>
-	<th>Restaurant</th>
-	<th>Price</th>
-	<th>Overall Rating</th>
-	<th>Distance</th>
-</tr>
-</thead>
-<tbody>
-<% @items.each do |item|%>
-	<tr>
-  		<td><%= link_to "#{item.name}", item_path(item)%></td>
-    	<td>  <%= link_to "#{item.restaurant.name}", restaurant_path(item.restaurant.id) %></td>
-   		<td>  $<%= item.price %></td>
-    	  	  <% average = [] %>
-      	      <% item.reviews.each do |review| %>
-      	      <% average << review.rating %>
-      	      <% end %>
-      	      <% if average.length > 0 %>
- 		      <% average_array = average.compact %>
- 	          <% display_average = average_array.inject{ |sum, el| sum + el }.to_f / average_array.length %>
- 	    <td>  <%= display_average.round(1)%> / 5 </td>
- 	    	  <% else %>
- 	    <td>Rating not available</td>
- 	<% end %> 
-<% end %>
-  </tr>
+<ul class="menu-list col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+    <li class="list-group-item menu-list-item"> <h2 >Search Results</h2></li>
+    <% @items.each do |item| %>
 
-     <!-- some duplicate items are listed in our database-->
-  </tbody>
-</table>
+      <li class="list-group-item menu-list-item">
 
+       <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu-descriptions">
+                <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture")%>
+                  <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
+                  <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
+                  <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
+                  <% if current_user %>
+                  <p> <%= Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [item.restaurant.latitude, item.restaurant.longitude]).round(2) %> miles away </p>
+                  <% else %>
+                  <p> <%= Geocoder::Calculations.distance_between([@generic_austin[:latitude], @generic_austin[:longitude]], [item.restaurant.latitude, item.restaurant.longitude]).round(2)%> miles away </p>
+                  <% end %>
+                  <p><%=item.description ||"Description N/A" %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 
 	

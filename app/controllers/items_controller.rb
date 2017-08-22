@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
    # before_action :set_item
 
 	def index
+    @generic_austin = {latitude: 30.2915328, longitude: -97.7688358}
 	 	@items = Item.all
     @review = Review.new
     if params[:search]

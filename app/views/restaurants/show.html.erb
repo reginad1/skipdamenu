@@ -2,23 +2,52 @@
     var this_rest = new google.maps.LatLng("<%=@restaurant[:latitude]%>","<%=@restaurant[:longitude]%>")
     var google_id = "<%= @restaurant.google_id %>"
     var resName = "<%= @restaurant.name %>"
+    var Rid = "<%= @restaurant.id %>"
   </script>
   
 <h1 class="text-center"> <%= @restaurant.name %></h1>
-<div class="table-responsive">
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>Location</th>
-  </tr>
+<div >
+  <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-2col-lg-7 col-md-7 col-sm-7 ">
+    <ul class="menu-list">
+    <li class="list-group-item menu-list-item"> <h2 >Menu</h2></li>
+    <% @menu.each do |item| %>
+
+      <li class="list-group-item menu-list-item">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu-descriptions">
+                <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture ")%>
+                  <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
+                  <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
+                  <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
+                  <p><%=item.description ||"Description N/A" %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+
+  <div class=" col-lg-3 col-md-3 col-sm-3 ">
+    <div id='map-container' class="iframe-container "></div>
+    <div class="restaurant-info">
+      <ul class="list-group">
+        <li class="list-group-item"><p>Google Rating: <span id="rating"></span></p></li>
+        <li class="list-group-item"><p>Phone number: <span id="phone_number"></span></p></li>
+        <li class="list-group-item"><p>Hours: <span id="hours"></span></p></li>
+        <li class="list-group-item"><p>Address: <span id="address"></span></p></li>
+        <li class="list-group-item" id="pictures"><div class="clearfix"></div></li>
+      </ul>
+
+    </div>
+  </div>
 
 
- 
-  <tr>
-  <td><%= link_to "#{@restaurant.name}", restaurant_path %></td>
-   </tr>
-</table>
 </div>
-<div id='map-container' class="iframe-container "></div>
-</div>
+
+
 <div id='stuff' class="col-lg-4 col-md-4 col-sm-4 "> </div>
