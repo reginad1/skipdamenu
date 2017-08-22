@@ -13,17 +13,23 @@ class ItemsController < ApplicationController
 	end
 
 	def show
-	  @item = Item.find(params[:id])
+	  @item = Item.includes(:restaurant,:reviews).find(params[:id])
+    @check = Review.where(["item_id = ? and user_id = ?",params[:id],current_user.id])
 	end
 
   def update
     @item = Item.find(params[:id])
-    @review = @item.reviews.create!(body: params[:reviews][:body],rating: params[:reviews][:rating], user_id: current_user.id) 
-    if request.xhr?
-      render json: @review.to_json
+
+    if check.length == 0
+      @review = @item.reviews.create!(body: params[:reviews][:body],rating: params[:reviews][:rating], user_id: current_user.id)
+      if request.xhr?
+        render json: @review.to_json
+      else
+        redirect_to @item
+      end
     else
-      redirect_to @item
-    end 
+      render :json => { :errors => "FAIL YOU HACKER!!!" }, :status => 422
+    end
   end
 
   def edit

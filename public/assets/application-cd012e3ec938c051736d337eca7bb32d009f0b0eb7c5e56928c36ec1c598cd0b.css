@@ -8779,7 +8779,7 @@ button.close {
     display: none !important;
   }
 }
-/* line 1, /Users/apprentice/skipdamenu/skipdamenu/app/assets/stylesheets/restaurants.scss */
+/* line 1, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/restaurants.scss */
 .iframe-container {
   position: relative;
   width: 100%;
@@ -8787,7 +8787,7 @@ button.close {
   /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
 }
 
-/* line 6, /Users/apprentice/skipdamenu/skipdamenu/app/assets/stylesheets/restaurants.scss */
+/* line 6, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/restaurants.scss */
 .iframe-container > * {
   display: block;
   position: absolute;
@@ -8801,7 +8801,23 @@ button.close {
   width: 100%;
 }
 
-/* line 18, /Users/apprentice/skipdamenu/skipdamenu/app/assets/stylesheets/restaurants.scss */
+/* line 18, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/restaurants.scss */
 body {
   background-color: #94b8b8;
+}
+
+/* line 22, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/restaurants.scss */
+.center-cropped {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* line 30, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/restaurants.scss */
+.menu-item-picture {
+  float: left;
+  max-width: 150px;
+  margin-right: 30px;
 }
