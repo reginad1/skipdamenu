@@ -35,7 +35,6 @@ function map_init(place_id) {
         },
          function callback(result, status) {
           updateRestaurantInfo(result)
-
           ///// Its placing the Marker///////
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             var marker = new google.maps.Marker({

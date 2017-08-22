@@ -5,11 +5,13 @@ class ItemsController < ApplicationController
     @generic_austin = {latitude: 30.2915328, longitude: -97.7688358}
 	 	@items = Item.all
     @review = Review.new
+    @restaurants = Restaurant.all #for mapping
     if params[:search]
       @items = Item.search(params[:search]).sort
     else
       @items = Item.all.order("created_at DESC")
     end
+
 	end
 
 	def show

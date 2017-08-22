@@ -1,4 +1,18 @@
 
+<script>
+ var data = <%= @items.to_json.html_safe %>
+ var restaurants = <%= @restaurants.to_json.html_safe %>
+ console.log(data[0].restaurant_id)
+ console.log(restaurants[data[0].restaurant_id].latitude)
+ for(var i = 0; i < data.length; i++) {
+  console.log(restaurants[data[i].restaurant_id].latitude)
+  console.log(restaurants[data[i].restaurant_id].longitude)
+    var this_rest = new google.maps.LatLng(restaurants[data[i].restaurant_id].latitude,restaurants[data[i].restaurant_id].longitude);
+    var resName = restaurants[data[i].restaurant_id].name;
+    var Rid = restaurants[data[i].restaurant_id].id;
+  }
+</script>
+
 <ul class="menu-list col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
     <li class="list-group-item menu-list-item"> <h2 >Search Results</h2></li>
     <% @items.each do |item| %>
@@ -26,5 +40,9 @@
       </li>
     <% end %>
     </ul>
+  </div>
+
+  <div class=" col-lg-3 col-md-3 col-sm-3 ">
+    <div id='map-container' class="iframe-container "></div>
   </div>
 
