@@ -1,22 +1,38 @@
+   <script>
+    var current_user = "<%= current_user.email %>"
+  </script>
+
+
 <h1><%= @item.name %></h1>
 <p><%= @item.description %></p>
 <p><%= @item.price %></p>
 <p><%= link_to "#{@item.restaurant.name}", restaurant_path(@item.restaurant.id) %></p>
 <h3>Reviews:</h3>
+
+<div class="all-review-container">
+<div class="review-skeleton" style="display:none;">
+	<p>Review:<span id="review"> </span></p>
+	<p>Rating:<span id="rating"> </span></p>
+	<p>User:<span id="user"> </span> </p>
+</div>
 <% @item.reviews.each do |review| %>
-	<p>Review: <%= review.body %></p>
+<div class="review-display">
+	<p>Review: <span><%= review.body %></span></p>
+	<p>Rating: <span><%= review.rating%></span></p>
 	<% user = review.user.email %>
-	<p>User: <%= user %></p>
-	<br>
-	<br>
-	<br>
-	<% end %>
+	<p>User: <span><%= user %></span></p>
+</div>
+<% end %>
+</div>
 
 
-<%= form_with(model: @item) do |item|%>
+
+<% if @check.length == 0 %>
+<button id="add-review-button">Add Review and Rating!</button>
+<%= form_with(model: @item, :html => {:id => "review_form"},local: true) do |item|%>
 <% if @item.errors.any? %>
 <div id="error_explanation">
-	<h2><%= pluralize(@item.errors.count, "error") %> prohibited this author from being saved:</h2>
+	<h2><%= pluralize(@item.errors.count, "error") %> prohibited this review from being saved:</h2>
 
 	<ul>
 		<% @item.errors.full_messages.each do |message| %>
@@ -28,22 +44,26 @@
 
 
 <%= fields_for :reviews do |review| %>
-	<p>Add Review</p>
-	<div class="form-group-row">
-		<label class="col-md-2 col-form-label"><%= review.label :review %></label>
-		<div class="col-md-10">
-			<textarea type="text" class="form-control" cols='10', rows='5'<%= review.text_field :body%></textarea>
-		</div>
-	</div>
-	<div class= "form-group col-md-10 row">
-		<label for="rating">Rating:</label>
-		<%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
-	</div>
-	<% end %>
-	<div class="actions">
-		<%= item.submit %>
-	</div>
 
-
-
+<div class="form-group-row">
+	<label class="col-md-2 col-form-label"><%= review.label :review %></label>
+	<div id="review-body" class="col-md-10">
+		<textarea type="text" class="form-control" cols='10', rows='5'<%= review.text_field :body%></textarea>
+	</div>
+</div>
+<div id="review-rating" class= "form-group col-md-10 row">
+	<label for="rating">Rating:</label>
+	<%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+</div>
 <% end %>
+<div class="actions">
+
+	<%= item.submit "Add Review!" %>
+
+</div>
+<% end %>
+<% end %>
+
+
+
+
