@@ -1,6 +1,11 @@
 $( document ).ready(function() {
-  $('#user_edit_form').hide();
-  $('#edit_user').click(function(event) {
-    $('#user_edit_form').show();
+  $('#location_edit_form').hide();
+  $('#edit_location').click(function(event) {
+    $('#location_edit_form').show();
+  })
+  $('#location_edit_form').submit(function(event) {
+    $('#location_edit_form').hide();
+    // $("#map_tab").show();
+    // map_init_item(user_location)
   })
 });
