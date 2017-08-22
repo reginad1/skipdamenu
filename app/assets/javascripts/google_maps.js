@@ -58,7 +58,7 @@ $( document ).ready(function() {
     } else  {
       map_init(google_id)
     }
-
+  }
 });
 
 

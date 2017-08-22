@@ -8,27 +8,27 @@
 <p><%= @item.price %></p>
 <p><%= link_to "#{@item.restaurant.name}", restaurant_path(@item.restaurant.id) %></p>
 <h3>Reviews:</h3>
-<script type="text/javascript">
-	var item_id = "<%= @item.id %>"
-</script>
 
 <div class="all-review-container">
+<div class="review-skeleton" style="display:none;">
+	<p>Review:<span id="review"> </span></p>
+	<p>Rating:<span id="rating"> </span></p>
+	<p>User:<span id="user"> </span> </p>
+</div>
 <% @item.reviews.each do |review| %>
-<p>Review: <%= review.body %></p>
-<p>Rating: <%= review.rating%></p>
-<% user = review.user.email %>
-<p>User: <%= user %></p>
+<div class="review-display">
+	<p>Review: <span><%= review.body %></span></p>
+	<p>Rating: <span><%= review.rating%></span></p>
+	<% user = review.user.email %>
+	<p>User: <span><%= user %></span></p>
+</div>
 <% end %>
 </div>
 
-<div class="new-review-container">
-
-</div>
 
 
+<% if @check.length == 0 %>
 <button id="add-review-button">Add Review and Rating!</button>
-
-
 <%= form_with(model: @item, :html => {:id => "review_form"},local: true) do |item|%>
 <% if @item.errors.any? %>
 <div id="error_explanation">
@@ -57,10 +57,12 @@
 </div>
 <% end %>
 <div class="actions">
+
 	<%= item.submit "Add Review!" %>
+
 </div>
 <% end %>
-
+<% end %>
 
 
 
