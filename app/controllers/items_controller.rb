@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @review = @item.reviews.create!(body: params[:reviews][:body],rating: params[:reviews][:rating], user_id: current_user.id) 
     if request.xhr?
-      render json: @review
+      render json: @review.to_json
     else
       redirect_to @item
     end 

@@ -1,9 +1,7 @@
-<!--   <script>
-    var this_rest = new google.maps.LatLng("<#%=@item.restaurant[:latitude]%>","<#%=@item.restaurant[:longitude]%>")
-    var google_id = "<#%= @item.restaurant.google_id %>"
-    var resName = "<#%= @item.restaurant.name %>"
+   <script>
+    var current_user = "<%= current_user.email %>"
   </script>
--->
+
 
 <h1><%= @item.name %></h1>
 <p><%= @item.description %></p>
@@ -14,11 +12,17 @@
 	var item_id = "<%= @item.id %>"
 </script>
 
-<div class="review-container">
+<div class="all-review-container">
 <% @item.reviews.each do |review| %>
-<ul>	
-</ul>
+<p>Review: <%= review.body %></p>
+<p>Rating: <%= review.rating%></p>
+<% user = review.user.email %>
+<p>User: <%= user %></p>
 <% end %>
+</div>
+
+<div class="new-review-container">
+
 </div>
 
 
@@ -40,7 +44,7 @@
 
 
 <%= fields_for :reviews do |review| %>
-<p>Add Review</p>
+
 <div class="form-group-row">
 	<label class="col-md-2 col-form-label"><%= review.label :review %></label>
 	<div id="review-body" class="col-md-10">

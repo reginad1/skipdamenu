@@ -32,17 +32,26 @@ $(document).ready(function() {
 	})
 	.done(function(response) {
 		console.log(response)
-		displayReviews(response)
+		var html = '<p>' + 'Review: ' + response.body + '</p>' +
+				   '<p>' + 'Rating: ' + response.rating + '</p>' +
+				   '<p>' + 'User: ' + current_user + '</p>';
+
+		$(".new-review-container").append(html)
+		$form.trigger('reset')
+		$("#review_form").hide();
+		$("#add-review-button").show();
+		// displayReviews(response)
 		// console.log($form)
 	})
-	function displayReviews(reviews) {
-		$.get("assets/javascripts/templates/review.mst", function(template){
-			for (var i = 0; i < reviews.length; i++) {
-				var reviewsList = Mustache.to_html(template, reviews[i]);
-				$(".review-container ul").append(reviewsList)
-			}
-		})
-	}
+	// function displayReviews(reviews) {
+	// 	console.log("HEYYYYYYY")
+	// 	$.get('/assets/javascripts/templates/review.mst', function(template){
+	// 		for (var i = 0; i < reviews.length; i++) {
+	// 			var reviewsList = Mustache.to_html(template, reviews[i]);
+	// 			$(".review-container ul").append(reviewsList)
+	// 		}
+	// 	})
+	// }
 
 // })
 
