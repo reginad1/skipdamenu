@@ -18,9 +18,12 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @review = @item.reviews.create!(body: params[:reviews][:body],rating: params[:reviews][:rating], user_id: current_user.id)
-
-    redirect_to @item
+    @review = @item.reviews.create!(body: params[:reviews][:body],rating: params[:reviews][:rating], user_id: current_user.id) 
+    if request.xhr?
+      render json: @review.to_json
+    else
+      redirect_to @item
+    end 
   end
 
   def edit
@@ -47,9 +50,9 @@ class ItemsController < ApplicationController
    #    @item = Item.find(params[:id])
    #  end
 
-    def review_params
-      params.require(:review).permit(body: params[:reviews][:body], user_id: current_user.id)
-    end
+    # def review_params
+    #   params.require(:reviews).permit(reviews_attributes: [:body,:rating])
+    # end
 
 
 end
