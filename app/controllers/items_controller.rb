@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
     else
       @items = Item.all.order("created_at DESC")
     end
-
 	end
 
 	def show
@@ -38,6 +37,13 @@ class ItemsController < ApplicationController
     @item.reviews.build
   end
 
+  def create
+    @restaurant = Restaurant.find(params[:id])
+    @item = Item.new(item_params)
+    @item.restaurant_id = @restaurant.id
+    @item.save
+  end
+
   #  def update
   #   respond_to do |format|
   #     binding.pry
@@ -54,6 +60,9 @@ class ItemsController < ApplicationController
 
   private
 
+   def item_params
+     params.require(:item).permit(:name, :price, :description)
+   end
    # def set_item
    #    @item = Item.find(params[:id])
    #  end

@@ -2,7 +2,13 @@
 <script>
  var item_data = <%= @items.to_json.html_safe %>
  var restaurants = <%= @restaurants.to_json.html_safe %>
- var user_location =  new google.maps.LatLng("<%= current_user.latitude %>","<%=  current_user.longitude%>")
+ var user_location =  new google.maps.LatLng("<%if current_user != nil%>"
+                                              "<%=current_user.latitude%>",
+                                              "<%= current_user.longitude%>"
+                                              "<% else %>"
+                                              "<%=30.2915328%>",
+                                              "<%=97.7688358%>"
+                                              "<% end%>")
 </script>
 <div class="container-fluid errthing">
 

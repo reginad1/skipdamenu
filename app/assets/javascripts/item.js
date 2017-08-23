@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	$("#review_form").hide();
+	$("#add_item_form").hide();
+
 	$("#add-review-button").click(function(event) {
 		event.preventDefault()
 		$(this).hide();
@@ -30,8 +32,7 @@ $(document).ready(function() {
 		console.log("DDIDIDIDI THIS WORK?")
 		$("#review_form").hide();
 	})
+})
 
-
-	})
 })
 
