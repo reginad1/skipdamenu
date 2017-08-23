@@ -1,6 +1,9 @@
    <script>
-   	var current_user = "<%= current_user.email %>"
-   </script>
+    var current_user = "<% if current_user%>"
+                       "<%= current_user.email %>"
+                       "<% else %>"
+                       "<% end %>"
+  </script>
 
 
    <h1><%= @item.name %></h1>
@@ -68,6 +71,7 @@
    	</div>
    	<% end %>
    	<% end %>
+
 
 
 

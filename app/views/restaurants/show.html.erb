@@ -4,12 +4,13 @@
     var resName = "<%= @restaurant.name %>"
     var Rid = "<%= @restaurant.id %>"
   </script>
-  
+
 <h1 class="text-center"> <%= @restaurant.name %></h1>
 <div >
   <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-2col-lg-7 col-md-7 col-sm-7 ">
     <ul class="menu-list">
-    <li class="list-group-item menu-list-item"> <h2 >Menu</h2></li>
+    <li class="list-group-item menu-list-item"> <h2 >Menu</h2>
+
     <% @menu.each do |item| %>
 
       <li class="list-group-item menu-list-item">
