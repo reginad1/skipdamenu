@@ -5,22 +5,23 @@ class ItemsController < ApplicationController
     @generic_austin = {latitude: 30.2915328, longitude: -97.7688358}
     @items = Item.all
     @review = Review.new
-    
-    
+    @restaurants = []
+    @images = []
     if params[:search]
-      @items = Item.search(params[:search]).sort
+      @items = Item.includes(:restaurant,:reviews).search(params[:search]).sort
     else
       @items = Item.all.order("created_at DESC")
     end
+   
     @items.each do |item|
-    @images = []
-    item.reviews.each do |review|
-
-      @images << review.image
-    end 
-  end 
-
-  end
+      @restaurants << item.restaurant
+      item.reviews.each do |review|
+        @images << review.image
+      end
+    end
+    
+    @restaurants = @restaurants.uniq
+	end
 
   def show
    @item = Item.includes(:restaurant,:reviews).find(params[:id])
