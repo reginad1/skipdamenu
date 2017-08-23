@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20170821163128) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.float "latitude"
-    t.float "longitude"
+    t.float "latitude", default: 30.2915328
+    t.float "longitude", default: -97.7688358
     t.string "zip"
     t.string "city"
     t.string "google_id"
