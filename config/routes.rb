@@ -14,7 +14,9 @@ root 'welcome#index'
 end
 
 
-     resources :items
+     resources :items do
+     	resources :reviews
+     end
      resources :users
      resources :restaurants, only: [:show,:update]
 

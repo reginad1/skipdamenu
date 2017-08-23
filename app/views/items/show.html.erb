@@ -1,68 +1,73 @@
    <script>
-    var current_user = "<%= current_user.email %>"
-  </script>
+   	var current_user = "<%= current_user.email %>"
+   </script>
 
 
-<h1><%= @item.name %></h1>
-<p><%= @item.description %></p>
-<p><%= @item.price %></p>
-<p><%= link_to "#{@item.restaurant.name}", restaurant_path(@item.restaurant.id) %></p>
-<h3>Reviews:</h3>
+   <h1><%= @item.name %></h1>
+   <p><%= @item.description %></p>
+   <p><%= @item.price %></p>
+   <p><%= link_to "#{@item.restaurant.name}", restaurant_path(@item.restaurant.id) %></p>
+   <h3>Reviews:</h3>
 
-<div class="all-review-container">
-<div class="review-skeleton" style="display:none;">
-	<p>Review:<span id="review"> </span></p>
-	<p>Rating:<span id="rating"> </span></p>
-	<p>User:<span id="user"> </span> </p>
-</div>
-<% @item.reviews.each do |review| %>
-<div class="review-display">
-	<p>Review: <span><%= review.body %></span></p>
-	<p>Rating: <span><%= review.rating%></span></p>
-	<% user = review.user.email %>
-	<p>User: <span><%= user %></span></p>
-</div>
-<% end %>
-</div>
-
-
-
-<% if @check.length == 0 %>
-<button id="add-review-button">Add Review and Rating!</button>
-<%= form_with(model: @item, :html => {:id => "review_form"},local: true) do |item|%>
-<% if @item.errors.any? %>
-<div id="error_explanation">
-	<h2><%= pluralize(@item.errors.count, "error") %> prohibited this review from being saved:</h2>
-
-	<ul>
-		<% @item.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-		<% end %>
-	</ul>
-</div>
-<% end %>
+   <div class="all-review-container">
+   	<div class="review-skeleton" style="display:none;">
+   		<p>Review:<span id="review"> </span></p>
+   		<p>Rating:<span id="rating"> </span></p>
+   		<p>User:<span id="user"> </span> </p>
+   		<p>Photo:<span id="image"></span><p>
+   		</div>
+   		<% @item.reviews.each do |review| %>
+   		<div class="review-display">
+   			<p>Review: <span><%= review.body %></span></p>
+   			<p>Rating: <span><%= review.rating%></span></p>
+   			<% user = review.user.email %>
+   			<p>User: <span><%= user %></span></p>
+   			<p>Photo: <span><%= cl_image_tag review.image.file.public_id%></span></p>
+   		</div>
+   		<% end %>
+   	</div>
 
 
-<%= fields_for :reviews do |review| %>
 
-<div class="form-group-row">
-	<label class="col-md-2 col-form-label"><%= review.label :review %></label>
-	<div id="review-body" class="col-md-10">
-		<textarea type="text" class="form-control" cols='10', rows='5'<%= review.text_field :body%></textarea>
-	</div>
-</div>
-<div id="review-rating" class= "form-group col-md-10 row">
-	<label for="rating">Rating:</label>
-	<%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
-</div>
-<% end %>
-<div class="actions">
+   	<% if @check.length == 0 %>
+   	<button id="add-review-button">Add Review and Rating!</button>
+   	<%= form_with(model: [@item, Review.new] , :html => {:id => "review_form", :multipart => true},local: true) do |item|%>
+   	<% if @item.errors.any? %>
+   	<div id="error_explanation">
+   		<h2><%= pluralize(@item.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-	<%= item.submit "Add Review!" %>
+   		<ul>
+   			<% @item.errors.full_messages.each do |message| %>
+   			<li><%= message %></li>
+   			<% end %>
+   		</ul>
+   	</div>
+   	<% end %>
 
-</div>
-<% end %>
-<% end %>
+
+   	<%= fields_for :review do |review| %>
+
+   	<div class="form-group-row">
+   		<label class="col-md-2 col-form-label"><%= review.label :review %></label>
+   		<div id="review-body" class="col-md-10">
+   			<textarea type="text" name='review[body]' class="form-control" cols='10', rows='5' <%= review.text_field :body%> </textarea>
+   		</div>
+   	</div>
+   	<div id="review-rating" class= "form-group col-md-10 row">
+   		<label for="rating">Rating:</label>
+   		<%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+   	</div>
+   	<div>
+   		<%= review.file_field :image %>
+   	</div>
+   	<% end %>
+   	<div class="actions">
+
+   		<%= item.submit "Add Review!" %>
+
+   	</div>
+   	<% end %>
+   	<% end %>
 
 
 

@@ -6,11 +6,13 @@ git_source(:github) do |repo_name|
 end
 
 gem 'devise'
+
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'pry-rails'
+gem 'cloudinary'
 gem "mustache", "~> 1.0"
 gem 'geocoder' #for finding current location
 
@@ -26,7 +28,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'carrierwave'
 gem "foursquare2"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

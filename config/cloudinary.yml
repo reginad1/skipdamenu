@@ -1,0 +1,25 @@
+---
+development:
+  cloud_name: skipdamenu
+  api_key: '664192928943954'
+  api_secret: iklNNnNH_Bso2nyV16X205Si36U
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: skipdamenu
+  api_key: '664192928943954'
+  api_secret: iklNNnNH_Bso2nyV16X205Si36U
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: skipdamenu
+  api_key: '664192928943954'
+  api_secret: iklNNnNH_Bso2nyV16X205Si36U
+  enhance_image_tag: true
+  static_image_support: false
+
+
+
+
+
+
