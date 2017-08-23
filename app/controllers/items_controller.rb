@@ -50,6 +50,8 @@ class ItemsController < ApplicationController
   # else
   #   render :json => { :errors => "FAIL YOU HACKER!!!" }, :status => 422
   # end
+
+
 end
 
 def edit
