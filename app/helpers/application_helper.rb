@@ -32,15 +32,6 @@ module ApplicationHelper
     end
   end
 
-  # def self.create_types(object)
-  #   return nil if object.name.nil?
-  #   object.name.split(" ").each do |type|
-  #     object.types << Type.find_or_create_by(name: type.downcase)
-  #   end
-  #   object.types << Type.find_or_create_by(name: object.name.downcase)
-  #   object.save
-  # end
-
   def self.not_duplicate_menu_res?(name,restaurant_id)
     original = Item.find_by_name(name)
     return true if original == nil
