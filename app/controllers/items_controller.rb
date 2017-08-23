@@ -19,7 +19,11 @@ class ItemsController < ApplicationController
 
 	def show
 	  @item = Item.includes(:restaurant,:reviews).find(params[:id])
-    @check = Review.where(["item_id = ? and user_id = ?",params[:id],current_user.id])
+    if current_user
+      @check = Review.where(["item_id = ? and user_id = ?",params[:id],current_user.id])
+    else
+      @check = [0]
+    end
 	end
 
   def update
@@ -41,6 +45,7 @@ class ItemsController < ApplicationController
     @item.reviews.build
   end
 
+
   #  def update
   #   respond_to do |format|
   #     binding.pry
@@ -57,6 +62,9 @@ class ItemsController < ApplicationController
 
   private
 
+   def item_params
+     params.require(:item).permit(:name, :price, :description)
+   end
    # def set_item
    #    @item = Item.find(params[:id])
    #  end
