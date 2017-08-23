@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
     @items = Item.all
     @review = Review.new
     @restaurants = []
-    @images = []
+
     if params[:search]
       @items = Item.includes(:restaurant,:reviews).search(params[:search]).sort
     else
@@ -15,9 +15,6 @@ class ItemsController < ApplicationController
    
     @items.each do |item|
       @restaurants << item.restaurant
-      item.reviews.each do |review|
-        @images << review.image
-      end
     end
     
     @restaurants = @restaurants.uniq

@@ -28,9 +28,9 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu-descriptions">
-                
-                <% if @images.length > 0 %>
-                <%=  cl_image_tag(@images.first,class:"img-thumbnail menu-item-picture")%>
+                <% image = ItemsHelper.get_picture(item)%>
+                <% if !image.empty? %>
+                <%=  cl_image_tag(image.first,class:"img-thumbnail menu-item-picture")%>
                 <%else%>
                 <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture")%>
                 <% end %>

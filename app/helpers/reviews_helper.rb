@@ -4,7 +4,7 @@ module ReviewsHelper
       rating = 0
     else
       rating = reviews.inject(0)  do |sum,review|
-        if (review.rating > 5 || review.rating < 0)
+        if (review.rating == nil|| review.rating > 5 || review.rating < 0)
         sum
         else
         sum + review.rating
