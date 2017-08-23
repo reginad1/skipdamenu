@@ -1,14 +1,14 @@
-
+    <%if current_user != nil%>
+    <%lat = current_user.latitude%>
+    <%lng = current_user.longitude%>
+    <% else %>
+    <%lat = "30.2915328"%>
+    <%lng = "97.7688358"%>
+    <% end%>
 <script>
  var item_data = <%= @items.to_json.html_safe %>
  var restaurants = <%= @restaurants.to_json.html_safe %>
- var user_location =  new google.maps.LatLng("<%if current_user != nil%>"
-                                              "<%=current_user.latitude%>",
-                                              "<%=current_user.longitude%>"
-                                              "<% else %>"
-                                              "<%=30.2915328%>",
-                                              "<%=97.7688358%>"
-                                              "<% end%>")
+ var user_location =  new google.maps.LatLng(<%= lat %>,<%= lng %>)
 </script>
 <div class="container-fluid errthing">
 

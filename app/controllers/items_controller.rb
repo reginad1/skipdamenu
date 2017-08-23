@@ -12,11 +12,11 @@ class ItemsController < ApplicationController
     else
       @items = Item.all.order("created_at DESC")
     end
-   
+
     @items.each do |item|
       @restaurants << item.restaurant
     end
-    
+
     @restaurants = @restaurants.uniq
 	end
 
@@ -28,8 +28,7 @@ class ItemsController < ApplicationController
       @check = [0]
     end
 	end
-  
- end
+
 
  def update
   # @item = Item.find(params[:id])
@@ -42,7 +41,7 @@ class ItemsController < ApplicationController
   #   else
   #     @review = @item.reviews.create!(params[:review])
   #     @review.user = current_user
-  #   end 
+  #   end
   #   if request.xhr?
   #     render json: @review.to_json
   #   else
@@ -51,7 +50,7 @@ class ItemsController < ApplicationController
   # else
   #   render :json => { :errors => "FAIL YOU HACKER!!!" }, :status => 422
   # end
-end 
+end
 
 def edit
   @item.reviews.build
