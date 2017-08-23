@@ -15,7 +15,11 @@ class ItemsController < ApplicationController
 
 	def show
 	  @item = Item.includes(:restaurant,:reviews).find(params[:id])
-    @check = Review.where(["item_id = ? and user_id = ?",params[:id],current_user.id])
+    if current_user
+      @check = Review.where(["item_id = ? and user_id = ?",params[:id],current_user.id])
+    else
+      @check = [0]
+    end
 	end
 
   def update
@@ -37,12 +41,6 @@ class ItemsController < ApplicationController
     @item.reviews.build
   end
 
-  def create
-    @restaurant = Restaurant.find(params[:id])
-    @item = Item.new(item_params)
-    @item.restaurant_id = @restaurant.id
-    @item.save
-  end
 
   #  def update
   #   respond_to do |format|
