@@ -57,8 +57,8 @@ module ApplicationHelper
   def self.update_menus(menu_item,restaurant)
     item = Item.where({name:menu_item.name,restaurant_id:restaurant.id,entry_id:menu_item.entryId})
     return false if item.empty?
-    item.update_attributes(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
-    item.save if not_duplicate_menu_res?(menu_item.name,restaurant.id)
+    item.first.update_attributes(name: menu_item.name, price: menu_item.price,restaurant_id:restaurant.id,entry_id:menu_item.entryId,description:menu_item.description)
+    item.first.save if not_duplicate_menu_res?(menu_item.name,restaurant.id)
   end
 
   def self.traverse_menu(choice="nil")

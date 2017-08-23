@@ -85,9 +85,11 @@ RSpec.describe ApplicationHelper, type: :helper do
       client = ApplicationHelper.get_client
       venue = client.search_venues(:ll=>"30.2672,-97.7431",query:"Restaurant",limit:1)
       ApplicationHelper.restaurant_creator(venue[:venues],[Restaurant.new])
+      ApplicationHelper.traverse_menu("create")
       current_count = Item.count
+
       value = ApplicationHelper.traverse_menu("update")
-      expect(current_count).to_not eq Item.count
+      expect(current_count).to eq Item.count
       expect(value).to eq true
     end
   end
