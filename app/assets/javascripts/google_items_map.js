@@ -36,7 +36,7 @@ function map_init_item(place_id) {
     item: item,
     icon: image,
     item_url: `/items/${item_data[i].id}`,
-    rest_url: `/restaurants/${restaurants[item_data[i].restaurant_id].id}`
+    rest_url: `/restaurants/${restaurants[i].id}`
     });
     add_markers(marker, infowindow, map)
   }
