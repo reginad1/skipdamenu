@@ -23,23 +23,6 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  # describe "create_types method" do
-  #   it "returns nil if name is nil" do
-  #     restaurant = create(:restaurant)
-  #     item = build(:item,name:nil, restaurant_id:restaurant.id)
-  #     expect(ApplicationHelper.create_types(item)).to be nil
-  #   end
-  #   it "build types and saves object" do
-  #     restaurant = create(:restaurant)
-  #     item = build(:item,name:"Bagel Buns", restaurant_id:restaurant.id,entry_id:"123qwe123qwe123qwe")
-  #     ApplicationHelper.create_types(item)
-  #     expect(item.id).to_not be nil
-  #     expect(item.types).to_not be_empty
-  #     expect(Type.find_by_name("bagel buns")).to_not be nil
-  #     expect(Type.find_by_name("bagel")).to_not be nil
-  #     expect(Type.find_by_name("buns")).to_not be nil
-  #   end
-  # end
   describe "get_seed_venues method" do
     it "create Restaurant" do
       expect{ApplicationHelper.get_seed_venues}.to change{Restaurant.count}
