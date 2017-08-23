@@ -14,16 +14,15 @@ class ReviewsController < ApplicationController
 	def create
 		@item = Item.find(params[:item_id])
 		@check = Review.where(["item_id = ? and user_id = ?",params[:id],current_user.id])
-		@image = Cloudinary::Uploader.upload(params[:review][:image])
+			
 
 
 		if @check.length == 0
-			if params[:review][:image] == nil
+			if params[:review][:image] == "undefined"
 				@review = @item.reviews.create!(body: params[:review][:body],rating: params[:review][:rating], user_id: current_user.id)
 			else
+				@image = Cloudinary::Uploader.upload(params[:review][:image])
 				@review = @item.reviews.create!(body: params[:review][:body],rating: params[:review][:rating], user_id: current_user.id, image: params[:review][:image])
-			# binding.pry
-				# @review.user = current_user
 			end 
 			if request.xhr?
 				

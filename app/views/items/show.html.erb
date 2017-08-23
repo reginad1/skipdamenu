@@ -14,7 +14,7 @@
    		<p>Review:<span id="review"> </span></p>
    		<p>Rating:<span id="rating"> </span></p>
    		<p>User:<span id="user"> </span> </p>
-   		<p>Photo:<span id="image"></span><p>
+   		<span id="image"></span>
    		</div>
    		<% @item.reviews.each do |review| %>
    		<div class="review-display">
@@ -22,7 +22,7 @@
    			<p>Rating: <span><%= review.rating%></span></p>
    			<% user = review.user.email %>
    			<p>User: <span><%= user %></span></p>
-   			<p>Photo: <span><%= cl_image_tag review.image.file.public_id%></span></p>
+   			 <span><%= cl_image_tag review.image.file.public_id%></span>
    		</div>
    		<% end %>
    	</div>
