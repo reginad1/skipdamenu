@@ -13,7 +13,21 @@
 <div class="container-fluid errthing">
 
 <ul class="menu-list col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-    <li class="list-group-item menu-list-item"> <h2 >Search Results</h2><a id="tab1">List</a> <a id="tab2_map">Map</a></li>
+    <li class="list-group-item menu-list-item ">
+     <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h2 >Search Results</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <ul class="nav nav-pills nav-justified">
+            <li role="presentation" class="active"><a id="tab1">List</a> </li>
+            <li role="presentation" class=""><a id="tab2_map">Map</a> </li>
+          </ul>
+        </div>
+      </div>
+    </li>
     <% @items.each do |item| %>
       <li class="list-group-item menu-list-item text-list">
        <div class="row">
@@ -37,9 +51,10 @@
       </li>
     <% end %>
     <li class="list-group-item menu-list"  id="map_tab">
-    <div class="container">
+      <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div id='map-container2' class="iframe-container "></div>
-    </div>
+      </div>
+      <div class="clearfix"></div>
     </li>
     </ul>
   </div>
