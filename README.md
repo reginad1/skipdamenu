@@ -25,6 +25,34 @@ export FOURSQ_CLIENT = XXXXXXXXXXXXXXXXXXXXXXX
 export FOURSQ_SEC = XXXXXXXXXXXXXXXXXXXXXXX
 ```
 
+##Features
+- User creation feature
+    + Can register as a user
+    + Register with facebook or google Account
+- User Features
+    + Item ratings and review feature
+    + Picture upload Feature
+- Item Search Feature
+    + List price for each item
+    + list ratings from Skipdamenu
+    + Distance from user's current location
+    + if not user, than generic Austin Location
+    + Picture ability taken from Reviews
+    + Google Maps Feature
+        * Items searches are pinned on google maps
+        * Only Relevant search Items are listed
+        * custom pin icon
+- Restaurant page
+    + A list of all menu items
+    + Phone number
+    + Hours Oppen
+    + Address
+    + Pictures from Google images
+- Nav Bar
+    + Logo of Skipdamenu
+    + Search Bar
+    + Register/login/signout features embedded
+
 ## Technologies 
 This App was built on Rails 5
 ### Gems 
@@ -46,4 +74,4 @@ The Following API's are being used and you will need to generate your own API ke
 * Foursquare 
 
 ## Test
-Basic Rspec test written
+basic rspec test written
