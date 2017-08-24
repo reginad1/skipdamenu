@@ -25,7 +25,7 @@ export FOURSQ_CLIENT = XXXXXXXXXXXXXXXXXXXXXXX
 export FOURSQ_SEC = XXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-##Features
+## Features
 - User creation feature
     + Can register as a user
     + Register with facebook or google Account
