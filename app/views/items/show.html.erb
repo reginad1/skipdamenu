@@ -1,4 +1,6 @@
-<div class="item-show">
+
+<div class="container item-container">
+
 <script>
     var current_user = "<% if current_user%>"
                        "<%= current_user.email %>"
@@ -34,7 +36,7 @@
 
 
    	<% if @check.length == 0 %>
-   	<button id="add-review-button">Add Review and Rating!</button>
+   	<button class="btn btn-basic btn-lg" id="add-review-button">Add Review and Rating!</button>
    	<%= form_with(model: [@item, Review.new] , :html => {:id => "review_form", :multipart => true},local: true) do |item|%>
    	<% if @item.errors.any? %>
    	<div id="error_explanation">
@@ -65,7 +67,7 @@
    		<%= review.file_field :image %>
    	</div>
    	<% end %>
-   	<div class="actions">
+   	<div class="btn btn-basic btn-lg actions">
 
    		<%= item.submit "Add Review!" %>
 
