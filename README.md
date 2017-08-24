@@ -1,6 +1,6 @@
 # SkipDaMenu
 
-## Purpose 
+## Purpose
 Have you ever felt a craving for a chicken pot pie, and you wondered to youself, Where could I just get a chicken pot pie.  Or have you ever wondered who really has the best pizza in town?  Did you ever just want to find the closest hamburger to you?  Look no further!  Skipdamenu is a website designed to skip the menu and search by a given item.
 
 This project was created as a final project for DBC.
@@ -45,7 +45,7 @@ export FOURSQ_SEC = XXXXXXXXXXXXXXXXXXXXXXX
 - Restaurant page
     + A list of all menu items
     + Phone number
-    + Hours Oppen
+    + Hours Open
     + Address
     + Pictures from Google images
 - Nav Bar
@@ -53,9 +53,9 @@ export FOURSQ_SEC = XXXXXXXXXXXXXXXXXXXXXXX
     + Search Bar
     + Register/login/signout features embedded
 
-## Technologies 
+## Technologies
 This App was built on Rails 5
-### Gems 
+### Gems
  * Carrierwave
  * Bootstrap
  * Omniauthfacebook
@@ -66,12 +66,12 @@ This App was built on Rails 5
  * foursquare2
 
 ## API's
-The Following API's are being used and you will need to generate your own API keys for these to work.  You will need to export them into your enviroment.  
+The Following API's are being used and you will need to generate your own API keys for these to work.  You will need to export them into your enviroment.
 * Google Omniauth
 * Facebook Omniauth
 * Google Maps
 * Google Geocode
-* Foursquare 
+* Foursquare
 
 ## Test
 basic rspec test written
