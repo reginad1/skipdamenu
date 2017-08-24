@@ -3,7 +3,7 @@
     <%lng = current_user.longitude%>
     <% else %>
     <%lat = "30.2915328"%>
-    <%lng = "97.7688358"%>
+    <%lng = "-97.7688358"%>
     <% end%>
 <script>
  var item_data = <%= @items.to_json.html_safe %>
