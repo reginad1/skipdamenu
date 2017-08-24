@@ -19,7 +19,7 @@
 }
 
 body {
-  background-image: url(asset-path("wood5.jpg"));
+  background-image: asset-data-url("wood5.jpg");
   /*background-repeat: no-repeat;*/
   background-size: 100% 100%;
   color: green;
