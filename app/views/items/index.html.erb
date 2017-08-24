@@ -38,7 +38,7 @@
                 <% if !image.empty? %>
                 <%=  cl_image_tag(image.first,class:"img-thumbnail menu-item-picture")%>
                 <%else%>
-                <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture")%>
+                <img src="<%= asset_path('picture.jpg') %>" class="img-thumbnail menu-item-picture">
                 <% end %>
                   <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
                   <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>

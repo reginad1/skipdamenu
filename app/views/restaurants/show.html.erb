@@ -19,7 +19,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu-descriptions">
-                <%= image_tag("/assets/picture.jpg",class:"img-thumbnail menu-item-picture ")%>
+                <img src="<%= asset_path('picture.jpg') %>" class="img-thumbnail menu-item-picture">
                   <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
                   <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
                   <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
