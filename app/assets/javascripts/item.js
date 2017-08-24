@@ -15,7 +15,7 @@ $(document).ready(function() {
 		var $input = $("#review_image")
 		formData.append('review[image]',$input[0].files[0]);
 		$form.serializeArray().forEach(function(obj, i ){  formData.append(obj.name, obj.value) })
-		
+
 
 		$.ajax({
 			url:$form.attr('action'),
@@ -31,7 +31,7 @@ $(document).ready(function() {
 		$(skeleton).find("#rating").html(response.rating)
 		$(skeleton).find("#user").html(current_user)
 		if(response.image.url != null){
-		imageTag = `<img src=${response.image.url} >`
+		imageTag = `<img src=${response.image.url} class="reviews-picture">`
 		$(skeleton).find("#image").html(imageTag)
 		}
 		// console.log (response.image)

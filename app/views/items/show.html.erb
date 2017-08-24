@@ -1,85 +1,86 @@
 
-   <%email = current_user.email if current_user%>
-   <script>
-    var current_user = "<%= email %>"
-            
-  </script>
-<div class="review-background">
-<div class ="container">
-   <h2 style="color:black;"><%= @item.name %></h2>
-   <p><%= @item.description %></p>
-   <p><%= @item.price %></p>
-   <p><%= link_to "#{@item.restaurant.name}", restaurant_path(@item.restaurant.id) %></p>
-   <h3>Reviews:</h3>
+<%email = current_user.email if current_user%>
+<script>
+ var current_user = "<%= email %>"
 
-   <div class="all-review-container">
-   	<div class="review-skeleton" style="display:none;">
-   		<p>Review:<span id="review"> </span></p>
-   		<p>Rating:<span id="rating"> </span></p>
-   		<p>User:<span id="user"> </span> </p>
-   		<span id="image"></span>
-   		</div>
-   		<% @item.reviews.each do |review| %>
-   		<div class="review-display">
-   			<p>Review: <span><%= review.body %></span></p>
-   			<p>Rating: <span><%= review.rating%></span></p>
-   			<% user = review.user.email %>
-   			<p>User: <span><%= user %></span></p>
+</script>
+<div class="container">
+   <div class="review-background">
+      <div class ="container">
+         <h2 style="color:black;"><%= @item.name %></h2>
+         <p><%= @item.description %></p>
+         <p><%= @item.price %></p>
+         <p><%= link_to "#{@item.restaurant.name}", restaurant_path(@item.restaurant.id) %></p>
+         <h3>Reviews:</h3>
 
-
-            <% if review.image.file == nil%>
-              <p>No image available!</p>
-            <% else %>
-   			  <span><%= cl_image_tag review.image.file.public_id%></span>
-            <% end %>
-   		</div>
-   		<% end %>
-   	</div>
+         <div class="all-review-container">
+          <div class="review-skeleton" style="display:none;">
+           <p>Review:<span id="review"> </span></p>
+           <p>Rating:<span id="rating"> </span></p>
+           <p>User:<span id="user"> </span> </p>
+           <span id="image" class="reviews-picture"></span>
+        </div>
+        <% @item.reviews.each do |review| %>
+        <div class="review-display">
+         <p>Review: <span><%= review.body %></span></p>
+         <p>Rating: <span><%= review.rating%></span></p>
+         <% user = review.user.email %>
+         <p>User: <span><%= user %></span></p>
 
 
-
-   	<% if @check.length == 0 %>
-   	<button class="btn btn-basic btn-lg" id="add-review-button">Add Review and Rating!</button>
-   	<%= form_with(model: [@item, Review.new] , :html => {:id => "review_form", :multipart => true},local: true) do |item|%>
-   	<% if @item.errors.any? %>
-   	<div id="error_explanation">
-   		<h2><%= pluralize(@item.errors.count, "error") %> prohibited this review from being saved:</h2>
-
-   		<ul>
-   			<% @item.errors.full_messages.each do |message| %>
-   			<li><%= message %></li>
-   			<% end %>
-   		</ul>
-   	</div>
-   	<% end %>
-
-
-   	<%= fields_for :review do |review| %>
-
-   	<div class="form-group-row">
-   		<label class="col-md-2 col-form-label"><%= review.label :review %></label>
-   		<div id="review-body" class="col-md-10">
-   			<textarea type="text" name='review[body]' class="form-control" cols='10', rows='5' <%= review.text_field :body%> </textarea>
-   		</div>
-   	</div>
-   	<div id="review-rating" class= "form-group col-md-10 row">
-   		<label for="rating">Rating:</label>
-   		<%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
-   	</div>
-   	<div>
-   		<%= review.file_field :image %>
-   	</div>
-   	<% end %>
-   	<div class="btn btn-basic btn-lg actions">
-
-   		<%= item.submit "Add Review!" %>
-
-   	</div>
-   	<% end %>
-   	<% end %>
+         <% if review.image.file == nil%>
+         <p>No image available!</p>
+         <% else %>
+         <span ><%= cl_image_tag review.image.file.public_id, class:"reviews-picture"%></span>
+         <% end %>
+      </div>
+      <% end %>
    </div>
+
+
+   <% if @check.length == 0 %>
+      <button class="btn btn-basic btn-lg" id="add-review-button">Add Review and Rating!</button>
+      <%= form_with(model: [@item, Review.new] , :html => {:id => "review_form", :multipart => true},local: true) do |item|%>
+         <% if @item.errors.any? %>
+            <div id="error_explanation">
+            <h2><%= pluralize(@item.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+            <ul>
+            <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+         <% end %>
+         </ul>
+         </div>
+      <% end %>
+
+
+      <%= fields_for :review do |review| %>
+
+         <div class="form-group-row">
+         <label class="col-md-2 col-form-label"><%= review.label :review %></label>
+         <div id="review-body" class="col-md-10">
+         <textarea type="text" name='review[body]' class="form-control" cols='10', rows='5' <%= review.text_field :body%> </textarea>
+         </div>
+         </div>
+         <div id="review-rating" class= "form-group col-md-10 row">
+         <label for="rating">Rating:</label>
+         <%= review.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+         </div>
+         <div>
+         <%= review.file_field :image %>
+         </div>
+      <% end %>
+      <div class="btn btn-basic btn-lg actions">
+
+      <%= item.submit "Add Review!" %>
+
+      </div>
+      <% end %>
+   <% end %>
+</div>
 </div>
 
+</div
 
 
 

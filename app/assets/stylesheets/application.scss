@@ -10,17 +10,15 @@
 }
 
 .home_search {
-  position: absolute;
-  top: 65%;
-  left:50%;
-  transform: translate(-50%,-50%);
-
   background-color: #595959;
 }
 
 h1 {
   color: white;
 
+}
+.logo{
+  height: 250px;
 }
 
 body {
@@ -99,25 +97,11 @@ html {
   text-align: center;
   border: 5px white;
   border-radius: 5px;
-  max-width: 90%;
-  padding-top: 5px;
-  position: absolute;
-  top: 30%;
-  left:50%;
-  transform: translate(-50%,-50%);
 
 }
 .col-centered{
     float: none;
     margin: 0 auto;
-}
-.logo {
-  position: absolute;
-  top: 11%;
-  left:37%;
-  max-height: 200px;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .row-fluid {
@@ -151,5 +135,9 @@ html {
 #add-review-button{
   background-color:#B5BD89;
   color:black;
+}
+
+.reviews-picture {
+  max-height: 150px;
 }
 

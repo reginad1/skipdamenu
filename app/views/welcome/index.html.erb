@@ -1,15 +1,15 @@
-<div class= "container-welcome">
-<div class="logo">
+<div class= "container">
+<div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-lg-4 col-md-4 col-sm-4  ">
 <div class="row"><img src="<%= asset_path('skipdamenu_iconddd2.png') %>" class="center-block img-responsive"></div>
 </div>
-		<div class="form-group home_search jumbotron col-lg-10 col-md-8 col-sm-8 col-xs-12" id="search_box">
+		<div class="form-group home_search jumbotron col-lg-10 col-md-8 col-sm-8 col-xs-10" id="search_box">
 			<%= form_tag(items_path, :method => "get", id: "search-form", class: "form-horizontal") do %>
 			<div class="form-group">
-				<div class ="col-lg-8 col-md-9 col-sm-9 col-xs-12" >
+				<div class ="col-lg-9 col-md-9 col-sm-9 col-xs-10" >
 					<%= text_field_tag :search, params[:search], placeholder: "What do you want to eat?", class: 'form-control input-lg' %>
 				</div>
 
-				<%= submit_tag "Search", class: 'btn btn-basic btn-lg col-lg-3 col-md-3 col-sm-3 col-xs-12'%>
+				<%= submit_tag "Search", class: 'btn btn-basic btn-lg col-lg-3 col-md-3 col-sm-3 col-xs-9'%>
 
 			</div>
 			<% end %>

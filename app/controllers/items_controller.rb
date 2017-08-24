@@ -3,8 +3,8 @@ class ItemsController < ApplicationController
 
    def index
     @generic_austin = {latitude: 30.2915328, longitude: -97.7688358}
-    @items = Item.all
-    @review = Review.new
+    # @items = Item.all
+    # @review = Review.new
     @restaurants = []
 
     if params[:search]
@@ -16,7 +16,6 @@ class ItemsController < ApplicationController
     @items.each do |item|
       @restaurants << item.restaurant
     end
-
     @restaurants = @restaurants.uniq
 	end
 
