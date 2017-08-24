@@ -8,6 +8,7 @@
   <%= javascript_include_tag 'application' %>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtllZChDaFEMFPhL-RJRn-vqNr5o0_c8&libraries=places">
   </script>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 
 
 </head>
@@ -41,9 +42,11 @@
         </ul>
         <% end %>
         <!-- make a partial for search-->
-        <%= form_tag(items_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "What do you want?", class: 'form-control' %>
-          <%= submit_tag "Search"%>
+        <%= form_tag(items_path, :method => "get", id: "search-form", class: "navbar-form navbar-left",role: "search") do %>
+        <div class="form-group">
+          <%= text_field_tag :search, params[:search], placeholder: "What do you want to eat?", class: 'form-control input-lg' %>
+        </div>
+          <%= submit_tag "Search", class: 'btn btn-basic btn-lg' %>
           <% end %>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

@@ -1,9 +1,15 @@
 <div class= "container welcome">
 
-<div class="form-group home_search jumbotron" id="search_box">
-<%= form_tag(items_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
-	<%= text_field_tag :search, params[:search], placeholder: "What do you want?", class: 'form-control' %>
-	<%= submit_tag "Search", class: 'btn btn-basic btn-lg'%>
+<div class="form-group home_search jumbotron col-lg-8 col-md-8 col-sm-8 col-xs-12" id="search_box">
+<%= form_tag(items_path, :method => "get", id: "search-form", class: "form-horizontal") do %>
+<div class="form-group">
+	<div class ="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
+	<%= text_field_tag :search, params[:search], placeholder: "What do you want to eat?", class: 'form-control input-lg' %>
+	</div>
+
+	<%= submit_tag "Search", class: 'btn btn-basic btn-lg col-lg-3 col-md-3 col-sm-3 col-xs-12'%>
+
+</div>
 	<% end %>
 </div>
 </div>

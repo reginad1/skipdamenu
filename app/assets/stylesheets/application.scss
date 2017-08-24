@@ -28,12 +28,15 @@ body {
 html {
   height: 100%;
   color: white;
+
 }
 
 .navbar {
   background-color:#DFBE99;
   color:black;
   height:93px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 150%;
 }
 
 .navbar-default .navbar-nav > .active > a {
@@ -68,7 +71,13 @@ html {
   padding-top: 18px;
 }
 
+.nav.navbar-nav {
+  padding-top: 18px;
+}
 
+.sign_in.container {
+
+}
 /*.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   background-color: #DFBE99;
   color:black;
