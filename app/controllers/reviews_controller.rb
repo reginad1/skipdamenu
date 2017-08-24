@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
 				@review = @item.reviews.create!(body: params[:review][:body],rating: params[:review][:rating], user_id: current_user.id, image: params[:review][:image])
 			end 
 			if request.xhr?
-				
+				# binding.pry 
 				thing = @review.image.url
 				render json: @review.to_json
 							 thing.to_json

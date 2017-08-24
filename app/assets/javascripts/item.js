@@ -26,23 +26,21 @@ $(document).ready(function() {
 		  processData: false,
 		})
 	.done(function(response) {
-		console.log(response.thing)
-		console.log("it worked correctly?")
 		skeleton = $(".review-skeleton").removeAttr('style').removeClass().addClass("review-display")
 		$(skeleton).find("#review").html(response.body)
-		$(skeleton).find("#rating").html(response.rating )
+		$(skeleton).find("#rating").html(response.rating)
 		$(skeleton).find("#user").html(current_user)
-		console.log (response.image)
+		if(response.image.url != null){
 		imageTag = `<img src=${response.image.url} >`
-		console.log(imageTag)
 		$(skeleton).find("#image").html(imageTag)
+		}
+		// console.log (response.image)
+		// console.log(imageTag)
 		$(".all-review-container").append(skeleton)
 		$form.trigger('reset')
 		$("#review_form").hide();
 	})
 	.fail(function(response){
-		console.log(response)
-		console.log("DDIDIDIDI THIS WORK?")
 		$("#review_form").hide();
 	})
 })

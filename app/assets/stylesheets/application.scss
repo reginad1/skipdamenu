@@ -11,10 +11,15 @@
 
 .home_search {
   position: absolute;
-  top: 50%;
+  top: 65%;
   left:50%;
   transform: translate(-50%,-50%);
-  background-color: black;
+
+  background-color: #595959;
+}
+
+h1 {
+  color: white;
 
 }
 
@@ -22,7 +27,9 @@ body {
   background-image: asset-data-url("wood5.jpeg");
   /*background-repeat: no-repeat;*/
   background-size: 100% 100%;
-  color: green;
+  color: #595959;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 150%;
 }
 
 html {
@@ -46,7 +53,7 @@ html {
   background-color:#DFBE99;
 }
 .container-fluid {
-  color:black;
+  color:#595959;
 }
 
 .btn.btn-basic.btn-lg {
@@ -77,6 +84,59 @@ html {
 
 .sign_in.container {
 
+}
+
+.white-background {
+  background-color: white;
+  text-align: center;
+  border: 5px white;
+  border-radius: 25px;
+  padding-top: 5px;
+
+}
+.review-background {
+  background-color: white;
+  text-align: center;
+  border: 5px white;
+  border-radius: 5px;
+  max-width: 90%;
+  padding-top: 5px;
+  position: absolute;
+  top: 30%;
+  left:50%;
+  transform: translate(-50%,-50%);
+
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.logo {
+  position: absolute;
+  top: 11%;
+  left:37%;
+  max-height: 200px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.row-fluid {
+  max-height: 20px;
+}
+
+.img-responsive {
+  max-height: 360px;
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    overflow:hidden;
+}
+ .form-group {
+  display: block;
+  margin-left: 30px;
+  margin-right: 30px;
+  border:1px transparent;
+  border-radius:25px;
 }
 /*.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   background-color: #DFBE99;
