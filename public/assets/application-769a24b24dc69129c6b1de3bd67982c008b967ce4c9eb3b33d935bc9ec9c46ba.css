@@ -8821,3 +8821,97 @@ body {
   max-width: 150px;
   margin-right: 30px;
 }
+
+/* line 6, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.welcome {
+  position: relative;
+  height: 40rem;
+}
+
+/* line 12, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.home_search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+}
+
+/* line 21, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+body {
+  background-image: url("Wood5.jpg");
+  /*background-repeat: no-repeat;*/
+  background-size: 100% 100%;
+  color: green;
+}
+
+/* line 28, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+html {
+  height: 100%;
+  color: white;
+}
+
+/* line 34, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.navbar {
+  background-color: #DFBE99;
+  color: black;
+  height: 93px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 150%;
+}
+
+/* line 42, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.navbar-default .navbar-nav > .active > a {
+  background-color: #DFBE99;
+}
+
+/* line 45, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.navbar-default .navbar-nav > .hover > a {
+  background-color: #DFBE99;
+}
+
+/* line 48, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.container-fluid {
+  color: black;
+}
+
+/* line 52, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.btn.btn-basic.btn-lg, .btn-group-lg > .btn.btn-basic {
+  background-color: #B5BD89;
+  color: black;
+}
+
+/* line 57, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.navbar-brand {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 62, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.navbar-brand img {
+  max-height: 180%;
+}
+
+/* line 66, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.navbar-form {
+  padding-top: 20px;
+}
+
+/* line 70, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.navbar-right {
+  padding-top: 18px;
+}
+
+/* line 74, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.nav.navbar-nav {
+  padding-top: 18px;
+}
+
+/*.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  background-color: #DFBE99;
+  color:black;
+}*/
+/* line 86, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.item-show {
+  color: white;
+}
