@@ -1,7 +1,7 @@
 module ApplicationHelper
   def self.get_client
     # OAuth2::Client.new(ENV["foursq_client"], ENV["foursq_sec"], :site => 'https://foursquare.com/oauth2/access_token')
-    Foursquare2::Client.new(:client_id => ENV["foursq_client"], :client_secret => ENV["foursq_sec"],:api_version => '20170817')
+    Foursquare2::Client.new(:client_id => ENV["FOURSQ_CLIENT"], :client_secret => ENV["FOURSQ_SEC"],:api_version => '20170817')
   end
 
   def self.get_seed_venues

@@ -14,15 +14,17 @@
   top: 65%;
   left:50%;
   transform: translate(-50%,-50%);
+
   background-color: #595959;
 }
 
 h1 {
   color: white;
+
 }
 
 body {
-  background-image: url("Wood5.jpg");
+  background-image: asset-data-url("wood5.jpeg");
   /*background-repeat: no-repeat;*/
   background-size: 100% 100%;
   color: #595959;
@@ -140,3 +142,14 @@ html {
   background-color: #DFBE99;
   color:black;
 }*/
+
+
+.item-container{
+  color: white;
+}
+
+#add-review-button{
+  background-color:#B5BD89;
+  color:black;
+}
+
