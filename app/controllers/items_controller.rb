@@ -20,6 +20,15 @@ class ItemsController < ApplicationController
     @restaurants = @restaurants.uniq
 	end
 
+  def add
+    @item = Item.new(recipe_params)
+    if @item.save
+      redirect_to @item
+    else
+      render action: 'new'
+    end
+  end
+
 	def show
 	  @item = Item.includes(:restaurant,:reviews).find(params[:id])
     if current_user
