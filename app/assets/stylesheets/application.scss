@@ -92,6 +92,19 @@ html {
   padding-top: 5px;
 
 }
+.review-background {
+  background-color: white;
+  text-align: center;
+  border: 5px white;
+  border-radius: 5px;
+  max-width: 90%;
+  padding-top: 5px;
+  position: absolute;
+  top: 30%;
+  left:50%;
+  transform: translate(-50%,-50%);
+
+}
 .col-centered{
     float: none;
     margin: 0 auto;
