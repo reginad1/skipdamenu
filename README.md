@@ -7,8 +7,11 @@ This project was created as a final project for DBC.
 
 ## Collaborators
 [Apphia Mann - Founder of idea](https://github.com/apphiamann)
+
 [Dayne Beck](https://github.com/dbeck28)
+
 [Regina DeAngelis](https://github.com/reginad1)
+
 [Joseph Kim](https://github.com/josekim)
 
 ## Installation
