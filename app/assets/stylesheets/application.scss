@@ -14,8 +14,71 @@
   top: 50%;
   left:50%;
   transform: translate(-50%,-50%);
-  background-color: #eee;
-  background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black),
-  linear-gradient(-45deg, black 25%, transparent 25%, transparent 75%, black 75%, black);
-  background-size:60px 60px;
+  background-color: black;
+ 
 }
+
+body {
+  background-image: url("Wood5.jpg");
+  /*background-repeat: no-repeat;*/
+  background-size: 100% 100%;
+  color: green;
+}
+
+html {
+  height: 100%;
+  color: white;
+
+}
+
+.navbar {
+  background-color:#DFBE99;
+  color:black;
+  height:93px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 150%;
+}
+
+.navbar-default .navbar-nav > .active > a {
+  background-color:#DFBE99;
+}
+.navbar-default .navbar-nav > .hover > a {
+  background-color:#DFBE99;
+}
+.container-fluid {
+  color:black;
+}
+
+.btn.btn-basic.btn-lg {
+  background-color:#B5BD89;
+  color:black;
+}
+
+.navbar-brand {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-brand img{
+  max-height: 180%;
+}
+
+.navbar-form {
+  padding-top: 20px;
+}
+
+.navbar-right{
+  padding-top: 18px;
+}
+
+.nav.navbar-nav {
+  padding-top: 18px;
+}
+
+.sign_in.container {
+
+}
+/*.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  background-color: #DFBE99;
+  color:black;
+}*/
