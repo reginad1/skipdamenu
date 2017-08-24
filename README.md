@@ -11,16 +11,9 @@ This project was created as a final project for DBC.
 [Regina DeAngelis](https://github.com/reginad1)
 [Joseph Kim](https://github.com/josekim)
 
-## Technologies 
-
-## API's
-The Following API's are being used and you will need to generate your own API keys for these to work.  You will need to export them into your enviroment.  
-* Google Omniauth
-* Facebook Omniauth
-* Google Maps
-* Google Geocode
-* Foursquare 
+## Installation
 ```
+bundle install
 export GOOGLE_CLIENT_ID = XXXXXXXXXXXXXXXXXXXXXXX
 export GOOGLE_CLIENT_SECRET = XXXXXXXXXXXXXXXXXXXXXXX
 export FACEBOOK_SECRET = XXXXXXXXXXXXXXXXXXXXXXX
@@ -29,22 +22,25 @@ export FOURSQ_CLIENT = XXXXXXXXXXXXXXXXXXXXXXX
 export FOURSQ_SEC = XXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-Things you may want to cover:
+## Technologies 
+This App was built on Rails 5
+### Gems 
+ * Carrierwave
+ * Bootstrap
+ * Omniauthfacebook
+ * OmniauthGoogle
+ * Devise
+ * cloudinary
+ * geocoder
+ * foursquare2
 
-* Ruby version
+## API's
+The Following API's are being used and you will need to generate your own API keys for these to work.  You will need to export them into your enviroment.  
+* Google Omniauth
+* Facebook Omniauth
+* Google Maps
+* Google Geocode
+* Foursquare 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Test
+Basic Rspec test written
