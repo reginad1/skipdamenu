@@ -14746,9 +14746,9 @@ function add_markers(marker, infowindow, map) {
 ;
 function getGoogleID(search_term) {
   var map = new google.maps.Map(document.createElement('div'), {
-      center: this_rest,
-      zoom: 15
-    });
+    center: this_rest,
+    zoom: 15
+  });
 
   var request = {
     location: this_rest,
@@ -14760,27 +14760,29 @@ function getGoogleID(search_term) {
   var service = new google.maps.places.PlacesService(map);
   service.textSearch(request, callback);
   function callback(result) {
-    result = result.shift();
-    //make an ajax call -> update our restaurauasdiaser.google_id with place_id
-    updateGoogleID(result.place_id,'/restaurants/'+Rid)
-    map_init(result.place_id) // this is technically our google_id
+    if (result.length > 0) {
+      result = result.shift();
+      //make an ajax call -> update our restaurauasdiaser.google_id with place_id
+      updateGoogleID(result.place_id,'/restaurants/'+Rid)
+      map_init(result.place_id) // this is technically our google_id
     }
-      }
+  }
+}
 
 function map_init(place_id) {
-        var map = new google.maps.Map(document.getElementById('map-container'), {
-          center: this_rest,
-          zoom: 15
-        });
+  var map = new google.maps.Map(document.getElementById('map-container'), {
+    center: this_rest,
+    zoom: 15
+  });
 
-        var infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
+  var infowindow = new google.maps.InfoWindow();
+  var service = new google.maps.places.PlacesService(map);
 
-        service.getDetails({
-          placeId: place_id
-        },
-         function callback(result, status) {
-          updateRestaurantInfo(result)
+  service.getDetails({
+    placeId: place_id
+  },
+  function callback(result, status) {
+    updateRestaurantInfo(result)
 
           ///// Its placing the Marker///////
           if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -14790,21 +14792,21 @@ function map_init(place_id) {
             });
             google.maps.event.addListener(marker, 'click', function() {
               infowindow.setContent('<div><strong>' + result.name + '</strong><br>' +
-              result.formatted_address + '</div>');
+                result.formatted_address + '</div>');
               infowindow.open(map, this);
             });
           }
         });
-      }
+}
 
 $( document ).ready(function() {
-    if($('#map-container').length >= 1){
-      if (google_id == "")  {
-        getGoogleID(resName)
-      } else  {
-        map_init(google_id)
-      }
+  if($('#map-container').length >= 1){
+    if (google_id == "")  {
+      getGoogleID(resName)
+    } else  {
+      map_init(google_id)
     }
+  }
 
 
 });
@@ -14841,23 +14843,21 @@ $(document).ready(function() {
 		  processData: false,
 		})
 	.done(function(response) {
-		console.log(response.thing)
-		console.log("it worked correctly?")
 		skeleton = $(".review-skeleton").removeAttr('style').removeClass().addClass("review-display")
 		$(skeleton).find("#review").html(response.body)
-		$(skeleton).find("#rating").html(response.rating )
+		$(skeleton).find("#rating").html(response.rating)
 		$(skeleton).find("#user").html(current_user)
-		console.log (response.image)
+		if(response.image.url != null){
 		imageTag = `<img src=${response.image.url} >`
-		console.log(imageTag)
 		$(skeleton).find("#image").html(imageTag)
+		}
+		// console.log (response.image)
+		// console.log(imageTag)
 		$(".all-review-container").append(skeleton)
 		$form.trigger('reset')
 		$("#review_form").hide();
 	})
 	.fail(function(response){
-		console.log(response)
-		console.log("DDIDIDIDI THIS WORK?")
 		$("#review_form").hide();
 	})
 })
