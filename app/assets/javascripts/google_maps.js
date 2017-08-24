@@ -17,7 +17,6 @@ function getGoogleID(search_term) {
     if (result.length > 0) {
       result = result.shift();
       //make an ajax call -> update our restaurauasdiaser.google_id with place_id
-      console.log(result)
       updateGoogleID(result.place_id,'/restaurants/'+Rid)
       map_init(result.place_id) // this is technically our google_id
     }
