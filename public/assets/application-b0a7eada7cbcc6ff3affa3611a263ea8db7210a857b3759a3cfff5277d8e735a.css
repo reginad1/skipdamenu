@@ -8839,7 +8839,7 @@ body {
 
 /* line 21, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
 body {
-  background-image: url("Wood5.jpg");
+  background-image: url(/assets/wood5-9026b4ca1e1822533967c5c3870e5f09bceebb2dc3e851e5e6390e0bfa5b07dd.jpg);
   /*background-repeat: no-repeat;*/
   background-size: 100% 100%;
   color: green;
