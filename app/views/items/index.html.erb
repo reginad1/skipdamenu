@@ -5,16 +5,16 @@
     <%lat = "30.2915328"%>
     <%lng = "-97.7688358"%>
     <% end%>
-<script>
- var item_data = <%= @items.to_json.html_safe %>
- var restaurants = <%= @restaurants.to_json.html_safe %>
- var user_location =  new google.maps.LatLng(<%= lat %>,<%= lng %>)
-</script>
-<div class="container-fluid errthing">
+    <script>
+     var item_data = <%= @items.to_json.html_safe %>
+     var restaurants = <%= @restaurants.to_json.html_safe %>
+     var user_location =  new google.maps.LatLng(<%= lat %>,<%= lng %>)
+   </script>
+   <div class="container-fluid errthing">
 
-<ul class="menu-list col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-    <li class="list-group-item menu-list-item ">
-     <div class="row">
+    <ul class="menu-list col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+      <li class="list-group-item menu-list-item ">
+       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <h2 >Search Results</h2>
         </div>
@@ -29,40 +29,40 @@
       </div>
     </li>
     <% @items.each do |item| %>
-      <li class="list-group-item menu-list-item text-list">
-       <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu-descriptions">
-                <% image = ItemsHelper.get_picture(item)%>
-                <% if !image.empty? %>
-                <%=  cl_image_tag(image.first,class:"img-thumbnail menu-item-picture")%>
-                <%else%>
-                <img src="<%= asset_path('picture.jpg') %>" class="img-thumbnail menu-item-picture">
-                <% end %>
-                  <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
-                  <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
-                  <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
-                  <% if current_user %>
-                  <p> <%= Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [item.restaurant.latitude, item.restaurant.longitude]).round(2) %> miles away </p>
-                  <% else %>
-                  <p> <%= Geocoder::Calculations.distance_between([@generic_austin[:latitude], @generic_austin[:longitude]], [item.restaurant.latitude, item.restaurant.longitude]).round(2)%> miles away </p>
-                  <% end %>
-                  <p><%=item.description ||"Description N/A" %></p>
-                </div>
-              </div>
-            </div>
+    <li class="list-group-item menu-list-item text-list">
+     <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu-descriptions">
+            <% image = ItemsHelper.get_picture(item)%>
+            <% if !image.empty? %>
+            <%=  cl_image_tag(image.first,class:"img-thumbnail menu-item-picture")%>
+            <%else%>
+            <img src="<%= asset_path('picture.jpg') %>" class="img-thumbnail menu-item-picture">
+            <% end %>
+            <p><%= link_to(item.name,item_path(item.id),class: "menu-list-title") %></p>
+            <p><span><%=raw  ReviewsHelper.display_ratings(item.reviews) %> </span> <span class="list-ratings" id=<%= "ratings-#{item.id}"%>><%=item.reviews.length %> reviews </span></p>
+            <p>Price:<span> <%="$" if item.price %><%= item.price || "N/A" %></span></p>
+            <% if current_user %>
+            <p> <%= Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [item.restaurant.latitude, item.restaurant.longitude]).round(2) %> miles away </p>
+            <% else %>
+            <p> <%= Geocoder::Calculations.distance_between([@generic_austin[:latitude], @generic_austin[:longitude]], [item.restaurant.latitude, item.restaurant.longitude]).round(2)%> miles away </p>
+            <% end %>
+            <p><%=item.description ||"Description N/A" %></p>
           </div>
-      </li>
-    <% end %>
-    <li class="list-group-item menu-list"  id="map_tab">
-      <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div id='map-container2' class="iframe-container "></div>
+        </div>
       </div>
-      <div class="clearfix"></div>
-    </li>
-    </ul>
-  </div>
+    </div>
+  </li>
+  <% end %>
+  <li class="list-group-item menu-list"  id="map_tab">
+    <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div id='map-container2' class="iframe-container "></div>
+    </div>
+    <div class="clearfix"></div>
+  </li>
+</ul>
+</div>
 
 
 
