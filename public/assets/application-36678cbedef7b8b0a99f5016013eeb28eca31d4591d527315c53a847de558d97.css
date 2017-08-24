@@ -8911,7 +8911,13 @@ html {
   background-color: #DFBE99;
   color:black;
 }*/
-/* line 86, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
-.item-show {
+/* line 87, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+.item-container {
   color: white;
+}
+
+/* line 91, /Users/apprentice/Final-Project/skipdamenu/app/assets/stylesheets/application.scss */
+#add-review-button {
+  background-color: #B5BD89;
+  color: black;
 }
